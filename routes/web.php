@@ -19,8 +19,12 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('frontEnd.layouts.index');
 });
-Route::get('admin/home', function () {
-    return view('backEnd.layouts.index');
+//Route::get('admin/home', function () {
+//    return view('backEnd.layouts.index');
+//});
+use App\Http\Controllers\backEnd\homeController;
+Route::namespace('backEnd')->prefix('admin')->group(function (){
+        Route::get('',[homeController::class,'index'] );
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -23,10 +23,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+
     ];
 
     /**
@@ -58,4 +56,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }
