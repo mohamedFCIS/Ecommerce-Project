@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\backEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class categoriesController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class categoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('backend.category.index')->with('categories', $categories);
     }
 
     /**
@@ -24,7 +26,7 @@ class categoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class categoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'catogaryName' => 'required|unique:categories,name',
+            'catogaryMetaKeyword' => 'required',
+            'catogaryMetaDes' => 'required',
+        ]);
+
+
+        $category = new Category();
+        $category->name = $request->catogaryName;
+        $category->meta_keywords = $request->catogaryMetaKeyword;
+        $category->meta_des = $request->catogaryMetaDes;
+        $category->save();
+
+        $request->session()->flash('success', 'Category created successfully');
+        return redirect('/admin/category');
     }
 
     /**
@@ -46,7 +63,9 @@ class categoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('backend.category.show')->with('category', $category);
     }
 
     /**
@@ -57,7 +76,8 @@ class categoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('backend.category.edit')->with('category', $category);
     }
 
     /**
@@ -69,7 +89,21 @@ class categoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'catogaryName' => 'required',
+            'catogaryMetaKeyword' => 'required',
+            'catogaryMetaDes' => 'required',
+        ]);
+        $category = Category::find($id);
+        $category->name = $request->get('catogaryName');
+        $category->meta_keywords = $request->get('catogaryMetaKeyword');
+        $category->meta_des = $request->get('catogaryMetaDes');
+
+        $category->save();
+
+        session()->flash('success', 'Category updated successfully');
+
+        return redirect('/admin/category');
     }
 
     /**
@@ -80,6 +114,11 @@ class categoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        session()->flash('success', 'Category deleted successfully');
+
+        return redirect('/admin/category');
     }
 }
