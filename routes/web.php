@@ -34,8 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
 use App\Http\Controllers\backEnd\CategoriesController;
 Route::namespace('backEnd')->prefix('admin')->group(function (){
-    Route::get('create',[CategoriesController::class,'create'] );
-    Route::post('create',[CategoriesController::class,'store'] );
+    Route::get('category/create',[CategoriesController::class,'create'] );
+    Route::post('category/create',[CategoriesController::class,'store'] );
     Route::get('category',[CategoriesController::class,'index'] );
     Route::get('category/{id}',[CategoriesController::class,'show'] );
     Route::get('category/{id}/edit',[CategoriesController::class,'edit'] );
@@ -43,10 +43,8 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('category/{id}/delete',[CategoriesController::class,'destroy'] );
 
 });
-
-
-
 ////////////////////////////////////////////--End Category--//////////////////////////////////////////
 
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
+
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////

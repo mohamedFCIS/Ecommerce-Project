@@ -52,7 +52,7 @@
 
         </div>
         <div class="mb-3 text-center">
-            <a href="create"><button type="submit" class="btn btn-success " style="width: 40%">
+            <a href="category/create"><button type="submit" class="btn btn-success " style="width: 40%">
                     Create new Category
                 </button></a>
 
