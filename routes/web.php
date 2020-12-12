@@ -30,3 +30,23 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+////////////////////////////////////////////--Start Category--//////////////////////////////////////////
+use App\Http\Controllers\backEnd\CategoriesController;
+Route::namespace('backEnd')->prefix('admin')->group(function (){
+    Route::get('create',[CategoriesController::class,'create'] );
+    Route::post('create',[CategoriesController::class,'store'] );
+    Route::get('category',[CategoriesController::class,'index'] );
+    Route::get('category/{id}',[CategoriesController::class,'show'] );
+    Route::get('category/{id}/edit',[CategoriesController::class,'edit'] );
+    Route::post('category/{id}',[CategoriesController::class,'update'] );
+    Route::get('category/{id}/delete',[CategoriesController::class,'destroy'] );
+
+});
+
+
+
+////////////////////////////////////////////--End Category--//////////////////////////////////////////
+
+////////////////////////////////////////////--Start product--//////////////////////////////////////////
+////////////////////////////////////////////--Start product--//////////////////////////////////////////
