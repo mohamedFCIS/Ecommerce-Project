@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backEnd;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class usersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('backEnd.users.userShow', ["users" => $users]);
+        // return view("posts.userProfile",["posts"=>$posts, "user"=>$user]);
+
     }
 
     /**
@@ -35,7 +39,31 @@ class usersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'name' => "required |min:5| max:60",
+
+            'email' => 'required|email',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'country' => 'required',
+            // 'password' => 'required|confirmed|min:6',
+
+        ]);
+
+
+        $user = new User();
+        $name = request("name");
+        $email = request("email");
+        $phone = request("phone");
+        $password = request("psw");
+        $country = request("country");
+        $user->name = $name;
+        $user->email = $email;
+        $user->phone = $phone;
+        $user->password = $password;
+        $user->country = $country;
+        $user->save();
+        return back();
     }
 
     /**
@@ -55,9 +83,10 @@ class usersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+
+        return view('backEnd.users.userEdit', ['user' => $user]);
     }
 
     /**
@@ -69,7 +98,22 @@ class usersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        $user = User::find($id);
+        $name = request("name");
+        $email = request("email");
+        $phone = request("phone");
+        $password = request("psw");
+        $country = request("country");
+
+        $user->update([
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'country' => $country,
+            'password' => $password
+        ]);
+        return redirect("users");
     }
 
     /**
@@ -78,8 +122,9 @@ class usersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back();
     }
 }

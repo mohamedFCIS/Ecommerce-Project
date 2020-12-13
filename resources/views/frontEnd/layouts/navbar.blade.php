@@ -28,6 +28,27 @@
                                 <li><a href="add-to-wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
+                        <div class="user-area dropdown float-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> --}}
+                                {{ Auth::user()->name }}
+                               
+                            </a>
+        
+                            <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
+        
+                                <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
+        
+                                <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+                               <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="nav-link" href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i>  Logout</a>
+                                     
+                               </form>
+                            
+                                    </div>
+                        </div>
                         <li><a href="women.html">Women</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>

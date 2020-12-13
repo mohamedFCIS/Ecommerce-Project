@@ -1,6 +1,9 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backEnd\homeController;
+use App\Http\Controllers\backEnd\usersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +19,47 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return view('frontEnd.layouts.index');
+
+
+Route::group(['middleware'=>'auth:web'],function(){
+
+    Route::get('/home', function () {
+        return view('frontEnd.layouts.index');
+    });
 });
-//Route::get('admin/home', function () {
+
+
+
+
+
+
+
+
+
+Route::group(['middleware'=>'auth','namespace'=>'backEnd','prefix'=>'admin'],function(){
+//write all route backend here
+    Route::get('home',[homeController::class,'index'] );
+
+
+});
+
+
+
+// Route::get('admin/home', function () {
 //    return view('backEnd.layouts.index');
-//});
-use App\Http\Controllers\backEnd\homeController;
-Route::namespace('backEnd')->prefix('admin')->group(function (){
-        Route::get('',[homeController::class,'index'] );
-});
+// });
+// Route::namespace('backEnd')->prefix('admin')->group(function (){
+//         Route::get('',[homeController::class,'index'] );
+// });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+########################################  users#####################################
+// Route::resource('users',[usersController::class,'index']);
+Route::resource('/users', usersController::class );
+
+
+

@@ -11,3 +11,4 @@ class homeController extends Controller
         return view('backEnd.layouts.index');
     }
 }
+ 
