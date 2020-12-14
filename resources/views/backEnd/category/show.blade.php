@@ -3,7 +3,9 @@
 @section('title')
     Show Category
 @endsection
-
+@section('dashboard')
+    Category
+@endsection
 @section('content')
 
     <div class="container">
@@ -11,7 +13,7 @@
             {{ $category->name }}
         </h1>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <span>

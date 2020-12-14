@@ -4,11 +4,14 @@
     create
 @endsection
 
+@section('dashboard')
+    Category
+@endsection
 @section('content')
 
     <div class="container pt-5 text-center">
         <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
                         <h1>Create a new catogary</h1>
