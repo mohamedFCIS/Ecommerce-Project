@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\backEnd;
 
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class productsController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class productsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('backend.product.index')->with('products', $products);
     }
 
     /**
@@ -24,7 +27,8 @@ class productsController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('backend.Product.create')->with('products', $products);
     }
 
     /**
@@ -35,7 +39,32 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'productName' => 'required',
+            'productMetaKeyword' => 'required',
+            'productMetaDes' => 'required',
+            'productPrice' => 'required',
+            'productdetails' => 'required',
+            'productdescription' => 'required',
+            'productImage' => 'required|image:products,image',
+
+        ]);
+
+
+        $product = new Product();
+        $product->name = $request->productName;
+        $product->meta_keywords = $request->productMetaKeyword;
+        $product->meta_des = $request->productMetaDes;
+        $product->price = $request->productPrice;
+        $product->details = $request->productdetails;
+        $product->description = $request->productdescription;
+        $product->image = $request->productImage->store('images', 'public');
+
+        $product->save();
+
+        $request->session()->flash('success', 'product created successfully');
+        return redirect('/admin/product');
     }
 
     /**
@@ -46,7 +75,9 @@ class productsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('backend.product.show')->with('product', $product);
     }
 
     /**
@@ -57,7 +88,8 @@ class productsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('backend.product.edit')->with('product', $product);
     }
 
     /**
@@ -69,7 +101,32 @@ class productsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'productName' => 'required',
+            'productMetaKeyword' => 'required',
+            'productMetaDes' => 'required',
+            'productPrice' => 'required',
+            'productdetails' => 'required',
+            'productdescription' => 'required',
+
+        ]);
+        $product = Product::find($id);
+        $product->name = $request->get('productName');
+        $product->meta_keywords = $request->get('productMetaKeyword');
+        $product->meta_des = $request->get('productMetaDes');
+        $product->price = $request->get('productPrice');
+        $product->details = $request->get('productdetails');
+        $product->description = $request->get("productdescription");
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($product->image);
+            $product->image = $request->productImage->store('images', 'public');;
+        }
+        $product->save();
+
+        session()->flash('success', 'product updated successfully');
+
+        return redirect('/admin/product');
     }
 
     /**
@@ -80,6 +137,22 @@ class productsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::withTrashed()->where('id', $id)->first();
+        if ($product->trashed()) {
+            Storage::disk('public')->delete($product->image);
+
+            $product->forceDelete();
+            session()->flash('success', 'product trashed successfully');
+            return redirect('/admin/trashed');
+        } else {
+            $product->delete();
+            session()->flash('success', 'product deleted successfully');
+            return redirect('/admin/product');
+        }
+    }
+    public function trashed()
+    {
+        $trashed = Product::onlyTrashed()->get();
+        return view('backend.Product.index')->with('products', $trashed);
     }
 }

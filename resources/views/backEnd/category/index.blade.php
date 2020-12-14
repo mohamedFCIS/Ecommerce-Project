@@ -3,12 +3,14 @@
 @section('title')
     categories
 @endsection
-
+@section('dashboard')
+    Categories
+@endsection
 @section('content')
 
     <div class="container">
         <div class="row pt-3 justify-content-center">
-            <div class="card" style="width: 50%">
+            <div class="card" style="width: 90%">
                 <div class="card-header text-center">
                     <h1>All Categories</h1>
                 </div>

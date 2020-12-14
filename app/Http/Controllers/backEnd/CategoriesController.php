@@ -42,6 +42,7 @@ class CategoriesController extends Controller
             'catogaryName' => 'required|unique:categories,name',
             'catogaryMetaKeyword' => 'required',
             'catogaryMetaDes' => 'required',
+            
         ]);
 
 
