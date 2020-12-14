@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\backEnd;
+use PragmaRX\Countries\Package\Countries;
+
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -15,8 +17,11 @@ class usersController extends Controller
      */
     public function index()
     {
+        $con = Countries::all();
+       
+        // dd( $con->where('name.common', 'Brazil'));
         $users = User::all();
-        return view('backEnd.users.userShow', ["users" => $users]);
+        return view('backEnd.users.userShow', ["users" => $users,"country"=> $con]);
         // return view("posts.userProfile",["posts"=>$posts, "user"=>$user]);
 
     }
@@ -39,14 +44,15 @@ class usersController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        
         $request->validate([
+            
             'name' => "required |min:5| max:60",
-
-            'email' => 'required|email',
+            'email' => 'required|email |unique:users',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
-            // 'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:6',
+
 
         ]);
 
@@ -55,13 +61,16 @@ class usersController extends Controller
         $name = request("name");
         $email = request("email");
         $phone = request("phone");
-        $password = request("psw");
+        $password = request("password");
         $country = request("country");
+        $role = request("role");
+
         $user->name = $name;
         $user->email = $email;
         $user->phone = $phone;
         $user->password = $password;
         $user->country = $country;
+        $user->role = $role;
         $user->save();
         return back();
     }
@@ -98,20 +107,33 @@ class usersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($id);
+       
+        $request->validate([
+            
+            'name' => "required |min:5| max:60",
+            'email' => 'required|email |unique:users',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'country' => 'required',
+            'password' => 'required|confirmed|min:6',
+
+
+        ]);
+
         $user = User::find($id);
         $name = request("name");
         $email = request("email");
         $phone = request("phone");
-        $password = request("psw");
+        $password = request("password");
         $country = request("country");
+        $role = request("role");
 
         $user->update([
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
             'country' => $country,
-            'password' => $password
+            'password' => $password,
+            'role' => $role
         ]);
         return redirect("users");
     }

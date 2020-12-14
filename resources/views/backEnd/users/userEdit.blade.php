@@ -21,6 +21,9 @@
                             Full Name</label></div>
                     <div class="col col-sm-6"><input type="text" id="input-small" name="name" value="{{ $user->name }}"
                             placeholder="Enter full Name" class=" form-control">
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -31,6 +34,10 @@
                     <div class="col col-sm-6">
                         <input type="email" name="email" value="{{ $user->email }}" placeholder="Enter Your Email"
                             class="form-control">
+
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -45,37 +52,61 @@
                 <div class="row form-group">
                     <div class="col col-sm-5"><label for="input-large" class=" form-control-label"> Country</label>
                     </div>
-                    <div class="col col-sm-6"><input type="password" name="country" value="{{ $user->country }}"
+                    <div class="col col-sm-6"><input type="text" name="country" value="{{ $user->country }}"
                             class=" form-control" placeholder="Enter your Country">
+                            @error('country')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+
+                <div class="row form-group">
+                    <div class="col col-sm-5"><label for="input-large" class=" form-control-label"> Role</label>
+                    </div>
+                    <div class="col col-sm-6">
+
+
+
+                        <select class="form-control" id="role" name="role">
+                            <option value="admin">admin</option>
+                            <option value="user">User</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
 
                 <div class="row form-group">
                     <div class="col col-sm-5"><label for="input-large" class=" form-control-label"> Password</label>
                     </div>
-                    <div class="col col-sm-6"><input type="password" name="psw" class=" form-control">
+                    <div class="col col-sm-6"><input type="password" name="password" class=" form-control" id="password">
+
+                        @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <div class="col col-sm-5"><label for="input-large" class=" form-control-label"> repeat-password</label>
+                    <div class="col col-sm-5"><label for="input-large" class=" form-control-label">
+                            repeat-password</label>
                     </div>
-                    <div class="col col-sm-6"><input type="password" name="psw" class=" form-control">
+                    <div class="col col-sm-6"><input type="password" name="password_confirmation" class=" form-control">
                     </div>
                 </div>
         </div>
-    </div>
 
-    <div class="card-footer">
-        <button type="submit" class="btn btn-primary ">
-            <i class="fa fa-dot-circle-o"></i> Submit
-        </button>
-        <button type="reset" class="btn btn-danger  ">
-            <i class="fa fa-ban"></i> Reset
-        </button>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary ">
+                <i class="fa fa-dot-circle-o"></i> Submit
+            </button>
+            <button type="reset" class="btn btn-danger  ">
+                <i class="fa fa-ban"></i> Reset
+            </button>
 
 
-    </div>
+        </div>
     </div>
     </form>
 
