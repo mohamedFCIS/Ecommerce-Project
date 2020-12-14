@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backEnd\favouritesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::get('/home', function () {
 //    return view('backEnd.layouts.index');
 //});
 use App\Http\Controllers\backEnd\homeController;
+use App\Models\Favourite;
+
 Route::namespace('backEnd')->prefix('admin')->group(function (){
         Route::get('',[homeController::class,'index'] );
 });
@@ -30,3 +33,6 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');

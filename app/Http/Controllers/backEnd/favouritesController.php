@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\backEnd;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class favouritesController extends Controller
 {
@@ -33,9 +34,15 @@ class favouritesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store($id,Request $request)
+    {   
+        $product = Product::find($id);
+
+        $product->favourits()->create([
+            'user_id' => $request->user()->id
+        ]);
+
+         return back();   
     }
 
     /**
