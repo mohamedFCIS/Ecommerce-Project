@@ -43,6 +43,7 @@
                        <b>description:</b>        {{ $product->description }}
                         </span>
                     </div>
+                    
                     <div class="form-groub">
                         <img src="{{ asset('storage/'. $product->image) }}" alt=""
                         width="100%" >

@@ -48,6 +48,12 @@
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
                                     </span>
+                                    @else
+                                    <span class="float-right mr-2">
+                                        <a href="trashed/{{ $product->id }}" style="color: #00bcd4">
+                                            <i class="fa fa-undo" aria-hidden="true"></i>
+                                        </a>
+
                                 @endif
 
 
