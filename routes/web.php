@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
+
 ########################################  users#####################################
 // Route::resource('users',[usersController::class,'index']);
 
@@ -64,3 +65,33 @@ Route::get('notfound', function () {
 
 Route::resource('admin/users', usersController::class);
 
+////////////////////////////////////////////--Start Category--//////////////////////////////////////////
+use App\Http\Controllers\backEnd\CategoriesController;
+Route::prefix('admin')->group(function (){
+    Route::get('category/create',[CategoriesController::class,'create'] );
+    Route::post('category/create',[CategoriesController::class,'store'] );
+    Route::get('category',[CategoriesController::class,'index'] );
+    Route::get('category/{id}',[CategoriesController::class,'show'] );
+    Route::get('category/{id}/edit',[CategoriesController::class,'edit'] );
+    Route::post('category/{id}',[CategoriesController::class,'update'] );
+    Route::get('category/{id}/delete',[CategoriesController::class,'destroy'] );
+
+});
+////////////////////////////////////////////--End Category--//////////////////////////////////////////
+
+////////////////////////////////////////////--Start product--//////////////////////////////////////////
+use App\Http\Controllers\backEnd\ProductsController;
+Route::namespace('backEnd')->prefix('admin')->group(function (){
+    Route::get('product/create',[ProductsController::class,'create'] );
+    Route::post('product/create',[ProductsController::class,'store'] );
+    Route::get('product',[ProductsController::class,'index'] );
+    Route::get('product/{id}',[ProductsController::class,'show'] );
+    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );
+    Route::post('product/{id}',[ProductsController::class,'update'] );
+    Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
+    Route::get('trashed',[ProductsController::class,'trashed'] );
+    Route::get('trashed/{id}',[ProductsController::class,'restore'] );
+
+
+});
+////////////////////////////////////////////--Start product--//////////////////////////////////////////

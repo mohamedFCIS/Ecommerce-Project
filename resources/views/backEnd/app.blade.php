@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="/backEnd/vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="/backEnd/vendors/jqvmap/dist/jqvmap.min.css">
 
-
     <link rel="stylesheet" href="/backEnd/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -61,13 +60,15 @@
                     <a href="{{ route('users.index') }}"><i class="menu-icon fa fa-group"></i> Users</a>
                    
                 </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                        <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
-                    </ul>
-                </li>
+                <li >
+                    <a href="/admin/category"> <i class="menu-icon fa fa-list-alt"></i>Categories</a>
+                        </li>
+                        <li >
+                            <a href="/admin/product"> <i class="menu-icon fa fa-product-hunt"></i>Products</a>
+                                </li>
+                                <li >
+                                    <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
+                                        </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -189,7 +190,7 @@
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
-                        <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div>
+                        {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
                        
                        
                     </a>
@@ -239,7 +240,20 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
+
                     @yield('header')
+
+                    <h1>@yield('dashboard')</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">@yield('dashboard')</li>
+                    </ol>
+
                 </div>
             </div>
         </div>
