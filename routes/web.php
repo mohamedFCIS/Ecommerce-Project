@@ -56,6 +56,8 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::post('product/{id}',[ProductsController::class,'update'] );
     Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
     Route::get('trashed',[ProductsController::class,'trashed'] );
+    Route::get('trashed/{id}',[ProductsController::class,'restore'] );
+
 
 });
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
