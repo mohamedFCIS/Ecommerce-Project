@@ -188,7 +188,9 @@
             <div class="col-sm-5">
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                        {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
+                        <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div>
+                       
                        
                     </a>
 
@@ -200,7 +202,7 @@
                         <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i>  LOGOUT</a>
+                            <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i>  Logout</a>
                              
                        </form>
                     

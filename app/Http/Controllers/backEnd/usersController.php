@@ -7,6 +7,7 @@ use PragmaRX\Countries\Package\Countries;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class usersController extends Controller
 {
@@ -68,7 +69,7 @@ class usersController extends Controller
         $user->name = $name;
         $user->email = $email;
         $user->phone = $phone;
-        $user->password = $password;
+        $user->password =Hash::make( $password);
         $user->country = $country;
         $user->role = $role;
         $user->save();
@@ -132,7 +133,7 @@ class usersController extends Controller
             'email' => $email,
             'phone' => $phone,
             'country' => $country,
-            'password' => $password,
+            'password' => Hash::make( $password),
             'role' => $role
         ]);
         return redirect("users");

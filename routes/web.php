@@ -21,27 +21,14 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware'=>'auth:web'],function(){
+
 
     Route::get('/home', function () {
         return view('frontEnd.layouts.index');
-    });
-});
+    })->name("home");
 
 
 
-
-
-
-
-
-
-Route::group(['middleware'=>'auth','namespace'=>'backEnd','prefix'=>'admin'],function(){
-//write all route backend here
-    Route::get('home',[homeController::class,'index'] );
-
-
-});
 
 
 
@@ -59,7 +46,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 ########################################  users#####################################
 // Route::resource('users',[usersController::class,'index']);
-Route::resource('/users', usersController::class );
+
+Route::group(['middleware' => 'auth'], function () {
+
+
+Route::get('admin/home', [homeController::class, 'index']);
+   
 
 
 
+
+
+    Route::group(["middleware" => 'chechAdmin'], function () {
+        Route::resource('/users', usersController::class);
+
+
+    });
+});
+Route::get('notfound', function () {
+    return view('notfound');
+})->name('notfound');

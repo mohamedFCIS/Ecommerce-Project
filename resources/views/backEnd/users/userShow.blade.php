@@ -12,7 +12,7 @@
             </button>
         </div>
         <div class="card-body">
-            <table class="table table-striped  text-center table-bordered">
+            <table class="table table-striped  text-center table-bordered ">
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
@@ -25,7 +25,7 @@
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
 
                     @foreach ($users as $index => $user)
                         <tr>
