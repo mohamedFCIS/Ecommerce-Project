@@ -26,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('backُnd.category.create');
+
+        return view('backEnd.category.create');
     }
 
     /**
@@ -66,7 +67,7 @@ class CategoriesController extends Controller
     {
         $category = Category::find($id);
 
-        return view('backend.category.show')->with('category', $category);
+        return view('backEnd.category.show')->with('category', $category);
     }
 
     /**
@@ -78,7 +79,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('backend.category.edit')->with('category', $category);
+        return view('backEnd.category.edit')->with('category', $category);
     }
 
     /**

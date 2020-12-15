@@ -18,7 +18,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('backend.product.index')->with('products', $products);
+        return view('backEnd.product.index')->with('products', $products);
     }
 
     /**
@@ -29,7 +29,8 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('backend.product.create')->with('categories', $categories);
+
+        return view('backEnd.product.create')->with('categories', $categories);
     }
 
     /**
@@ -80,7 +81,7 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
 
-        return view('backend.product.show')->with('product', $product,);
+        return view('backEnd.product.show')->with('product', $product,);
     }
 
     /**
@@ -92,7 +93,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('backend.product.edit')->with('product', $product);
+        return view('backEnd.product.edit')->with('product', $product);
     }
 
     /**
@@ -156,7 +157,7 @@ class ProductsController extends Controller
     public function trashed()
     {
         $trashed = Product::onlyTrashed()->get();
-        return view('backend.Product.index')->with('products', $trashed);
+        return view('backEnd.product.index')->with('products', $trashed);
     }
     public function restore($id)
     {
