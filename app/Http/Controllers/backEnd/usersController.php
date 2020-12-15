@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\backEnd;
+
 use PragmaRX\Countries\Package\Countries;
 
 
@@ -19,10 +20,10 @@ class usersController extends Controller
     public function index()
     {
         $con = Countries::all();
-       
+
         // dd( $con->where('name.common', 'Brazil'));
         $users = User::all();
-        return view('backEnd.users.userShow', ["users" => $users,"country"=> $con]);
+        return view('backEnd.users.userShow', ["users" => $users, "country" => $con]);
         // return view("posts.userProfile",["posts"=>$posts, "user"=>$user]);
 
     }
@@ -34,7 +35,11 @@ class usersController extends Controller
      */
     public function create()
     {
-        //
+
+        $con = Countries::all();
+
+        $users = User::all();
+        return view('backEnd.users.userCreate', ["user" => $users, "country" => $con]);
     }
 
     /**
@@ -45,19 +50,19 @@ class usersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        dd();
         $request->validate([
-            
+
             'name' => "required |min:5| max:60",
             'email' => 'required|email |unique:users',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
+            'image'=> 'required|image',
 
 
         ]);
-
-
+                 
         $user = new User();
         $name = request("name");
         $email = request("email");
@@ -65,15 +70,18 @@ class usersController extends Controller
         $password = request("password");
         $country = request("country");
         $role = request("role");
+        $image = request("image")->store("images","public");
 
         $user->name = $name;
         $user->email = $email;
         $user->phone = $phone;
-        $user->password =Hash::make( $password);
+        $user->password = Hash::make($password);
         $user->country = $country;
         $user->role = $role;
+        $user->profile_photo_path = $image;
         $user->save();
-        return back();
+        session()->flash('success','User Create Successfully');
+        return redirect("admin/users");
     }
 
     /**
@@ -95,8 +103,8 @@ class usersController extends Controller
      */
     public function edit(User $user)
     {
-
-        return view('backEnd.users.userEdit', ['user' => $user]);
+$con = Countries::all();
+        return view('backEnd.users.userEdit', ['user' => $user,"country" => $con]);
     }
 
     /**
@@ -108,14 +116,16 @@ class usersController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
         $request->validate([
-            
+
             'name' => "required |min:5| max:60",
             'email' => 'required|email |unique:users',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
+            'image'=> 'required|image',
+
 
 
         ]);
@@ -127,16 +137,22 @@ class usersController extends Controller
         $password = request("password");
         $country = request("country");
         $role = request("role");
+        $image = request("image")->store("images","public");
+
 
         $user->update([
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
             'country' => $country,
-            'password' => Hash::make( $password),
-            'role' => $role
+            'password' => Hash::make($password),
+            'role' => $role,
+           'profile_photo_path' =>$image
+
         ]);
-        return redirect("users");
+        session()->flash('success','User Update Successfully');
+
+        return redirect("/admin/users");
     }
 
     /**

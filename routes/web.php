@@ -51,14 +51,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('admin/home', [homeController::class, 'index']);
-   
-
-
-
 
 
     Route::group(["middleware" => 'chechAdmin'], function () {
-        Route::resource('/users', usersController::class);
 
 
     });
@@ -66,3 +61,6 @@ Route::get('admin/home', [homeController::class, 'index']);
 Route::get('notfound', function () {
     return view('notfound');
 })->name('notfound');
+
+Route::resource('admin/users', usersController::class);
+
