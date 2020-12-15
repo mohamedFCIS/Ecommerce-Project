@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('backend.category.index')->with('categories', $categories);
+        return view('backEnd.category.index')->with('categories', $categories);
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backُnd.category.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoriesController extends Controller
             'catogaryName' => 'required|unique:categories,name',
             'catogaryMetaKeyword' => 'required',
             'catogaryMetaDes' => 'required',
-            
+
         ]);
 
 

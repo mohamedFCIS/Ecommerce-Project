@@ -29,7 +29,7 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('backend.Product.create')->with('categories', $categories);
+        return view('backend.product.create')->with('categories', $categories);
     }
 
     /**
