@@ -48,6 +48,7 @@
                     </div>
                     <div class="col col-sm-6"><input type="phone" name="phone" value="{{ old('phone') }}"
                             placeholder="Your Phone" class=" form-control">
+                            
 
                             @error('phone')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -109,7 +110,9 @@
                             <div class="col col-sm-5"><label for="input-large" class=" form-control-label">Image</label>
                             </div>
                             <div class="col col-sm-6"><input type="file" name="image" class=" form-control"
-                                    id="image">
+                                    id="imgUpload">
+                            <img src="" alt="k" width="50px" height="50px" id="img">
+
 
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>

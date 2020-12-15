@@ -50,7 +50,7 @@ class usersController extends Controller
      */
     public function store(Request $request)
     {
-        dd();
+        // dd();
         $request->validate([
 
             'name' => "required |min:5| max:60",
