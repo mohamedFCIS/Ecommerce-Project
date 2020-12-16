@@ -7,10 +7,11 @@
 @endsection
 
 @section('gallery')
-@include('frontEnd.layouts.gallery')
+    @include('frontEnd.layouts.gallery')
 @endsection
 
 @section('content')
+<<<<<<< HEAD
     <section class="text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap -m-4">
@@ -112,8 +113,11 @@
         </div>
         </div>
     </section>
+=======
+    <h1>welcome to home</h1>
+>>>>>>> bd219d4efaf1e012657b1c6083fe155127af35c2
 
-    @endsection
+@endsection
 
 @section('footer')
     @include('frontEnd.layouts.footer')
