@@ -7,13 +7,13 @@
 @endsection
 
 @section('gallery')
-@include('frontEnd.layouts.gallery')
+    @include('frontEnd.layouts.gallery')
 @endsection
 
 @section('content')
-<h1>welcome to home</h1>
+    <h1>welcome to home</h1>
 
-    @endsection
+@endsection
 
 @section('footer')
     @include('frontEnd.layouts.footer')

@@ -7,7 +7,14 @@
     Categories
 @endsection
 @section('content')
+@if (session()->has('error'))
+<div class="alert alert-danger">
 
+    {{session()->get('error')}}
+
+</div>
+
+@endif
     <div class="container">
         <div class="row pt-3 justify-content-center">
             <div class="card" style="width: 90%">

@@ -62,7 +62,7 @@ class usersController extends Controller
 
 
         ]);
-                 
+
         $user = new User();
         $name = request("name");
         $email = request("email");
@@ -71,7 +71,6 @@ class usersController extends Controller
         $country = request("country");
         $role = request("role");
         $image = request("image")->store("images","public");
-
         $user->name = $name;
         $user->email = $email;
         $user->phone = $phone;
