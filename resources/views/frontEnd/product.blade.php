@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <h1>welcome to product</h1>
+    <h1 style="text-align: center">welcome to products</h1>
 
 
     <div class="container">
@@ -23,6 +23,7 @@
                     <div class="card">
                         <img class="card-img"  height="200px"
                         src="{{ asset('storage/'. $product->image) }}"
+
                             alt="{{ $product->image }}">
                         <div class="card-img-overlay d-flex justify-content-end">
                             <a href="#" class="card-link text-danger like">
