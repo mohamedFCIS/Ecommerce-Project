@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="/backEnd/vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="/backEnd/vendors/jqvmap/dist/jqvmap.min.css">
 
-
     <link rel="stylesheet" href="/backEnd/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -71,13 +70,15 @@
                         <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                        <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
-                    </ul>
-                </li>
+                <li >
+                    <a href="/admin/category"> <i class="menu-icon fa fa-list-alt"></i>Categories</a>
+                        </li>
+                        <li >
+                            <a href="/admin/product"> <i class="menu-icon fa fa-product-hunt"></i>Products</a>
+                                </li>
+                                <li >
+                                    <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
+                                        </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -242,7 +243,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Dashboard</h1>
+                    <h1>@yield('dashboard')</h1>
                 </div>
             </div>
         </div>
@@ -250,7 +251,7 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li class="active">Dashboard</li>
+                        <li class="active">@yield('dashboard')</li>
                     </ol>
                 </div>
             </div>
