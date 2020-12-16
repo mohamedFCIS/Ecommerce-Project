@@ -25,7 +25,6 @@ Route::get('/products', function () {
 
 
     Route::get('/home', [HomeController::class, 'index']);
-    Route::get('/products', [HomeController::class, 'product']);
 
 
 
