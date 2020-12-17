@@ -21,11 +21,10 @@ Route::get('/', function () {
 });
 
 
-
-
     Route::get('/home', function () {
         return view('frontEnd.layouts.index');
     })->name("home");
+
 
 
 
@@ -65,9 +64,13 @@ Route::get('notfound', function () {
 
 Route::resource('admin/users', usersController::class);
 
+
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
 use App\Http\Controllers\backEnd\CategoriesController;
+
 Route::prefix('admin')->group(function (){
+//    Route::resources(['users' => usersController::class]);
+    Route::get('home',[homeController::class,'index'])->name('admin');
     Route::get('category/create',[CategoriesController::class,'create'] );
     Route::post('category/create',[CategoriesController::class,'store'] );
     Route::get('category',[CategoriesController::class,'index'] );

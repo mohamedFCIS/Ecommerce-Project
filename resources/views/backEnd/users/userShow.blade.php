@@ -1,4 +1,7 @@
 @extends('backEnd.app')
+@section('title')
+    Users
+    @endsection
 @section('header')
     <h1 class="text-primary"> Users Information</h1>
 @endsection
@@ -22,7 +25,7 @@
                         <th>Country</th>
                         <th>role</th>
                         <th>profile</th>
-                        
+
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -63,7 +66,7 @@
 
 
 
-   
+
 
 
     {{-- @if (Session::has('errors'))
