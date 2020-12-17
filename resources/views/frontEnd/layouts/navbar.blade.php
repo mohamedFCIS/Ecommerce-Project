@@ -45,22 +45,20 @@
                             @if (Route::has('login'))
                                 @if (Auth::check())
                                     @if (Auth::user()->role != 'user')
-                                        <a href="{{ url('/dashboard') }}"
-                                            class="text-sm text-gray-700 underline">Dashboard</a>
+                                        <a href="{{ url('/admin/home') }}"
+                                            class="text-sm text-gray-700 underline " style="display: inline">Dashboard</a>
                                     @endif
                                 @endif
                                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"
-                                    style="padding-top: 0.1rem !important;">
+                                    style="padding-top: 0.1rem !important; display:inline" >
                                     @auth
 
 
                                         <div class="user-area dropdown float-right">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                {{-- <img class="h-10 w-50 rounded-full"
-                                                    src="{{ Auth::user()->profile_photo_url }}"
-                                                    alt="{{ Auth::user()->name }}" /> --}}
-                                                {{ Auth::user()->name }}
+                                                <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
+
 
 
                                             </a>

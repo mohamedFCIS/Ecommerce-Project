@@ -121,17 +121,7 @@
                         </div>
 
 {{-- password field --}}
-                        <div class="row form-group">
-                            <div class="col col-sm-5"><label for="input-large" class=" form-control-label"> Password</label>
-                            </div>
-                            <div class="col col-sm-6"><input type="password" name="password" class=" form-control"
-                                    id="password">
-
-                                @error('password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                      
 
 
 
