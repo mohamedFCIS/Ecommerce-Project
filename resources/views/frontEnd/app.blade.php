@@ -8,28 +8,28 @@
 
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="frontEnd/css/animate.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/animate.css')}}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="frontEnd/css/icomoon.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/icomoon.css')}}">
     <!-- Ion Icon Fonts-->
-    <link rel="stylesheet" href="frontEnd/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/ionicons.min.css')}}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="frontEnd/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/bootstrap.min.css')}}">
 
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="frontEnd/css/magnific-popup.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/magnific-popup.css')}}">
 
     <!-- Flexslider  -->
-    <link rel="stylesheet" href="frontEnd/css/flexslider.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/flexslider.css')}}">
 
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="frontEnd/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="frontEnd/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/owl.theme.default.min.css')}}">
 
     <!-- Date Picker -->
-    <link rel="stylesheet" href="frontEnd/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/css/bootstrap-datepicker.css')}}">
     <!-- Flaticons  -->
-    <link rel="stylesheet" href="frontEnd/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="{{asset('frontEnd/fonts/flaticon/font/flaticon.css')}}">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -59,28 +59,28 @@
 </div>
 
 <!-- jQuery -->
-<script src="frontEnd/js/jquery.min.js"></script>
+<script src="{{asset('frontEnd/js/jquery.min.js')}}"></script>
 <!-- popper -->
-<script src="frontEnd/js/popper.min.js"></script>
+<script src="{{asset('frontEnd/js/popper.min.js')}}"></script>
 <!-- bootstrap 4.1 -->
-<script src="frontEnd/js/bootstrap.min.js"></script>
+<script src="{{asset('frontEnd/js/bootstrap.min.js')}}"></script>
 <!-- jQuery easing -->
-<script src="frontEnd/js/jquery.easing.1.3.js"></script>
+<script src="{{asset('frontEnd/js/jquery.easing.1.3.js')}}"></script>
 <!-- Waypoints -->
-<script src="frontEnd/js/jquery.waypoints.min.js"></script>
+<script src="{{asset('frontEnd/js/jquery.waypoints.min.js')}}"></script>
 <!-- Flexslider -->
-<script src="frontEnd/js/jquery.flexslider-min.js"></script>
+<script src="{{asset('frontEnd/js/jquery.flexslider-min.js')}}"></script>
 <!-- Owl carousel -->
-<script src="frontEnd/js/owl.carousel.min.js"></script>
+<script src="{{asset('frontEnd/js/owl.carousel.min.js')}}"></script>
 <!-- Magnific Popup -->
-<script src="frontEnd/js/jquery.magnific-popup.min.js"></script>
+<script src="{{asset('frontEnd/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="frontEnd/js/magnific-popup-options.js"></script>
 <!-- Date Picker -->
-<script src="frontEnd/js/bootstrap-datepicker.js"></script>
+<script src="{{asset('frontEnd/js/bootstrap-datepicker.js')}}"></script>
 <!-- Stellar Parallax -->
-<script src="frontEnd/js/jquery.stellar.min.js"></script>
+<script src="{{asset('frontEnd/js/jquery.stellar.min.js')}}"></script>
 <!-- Main -->
-<script src="frontEnd/js/main.js"></script>
+<script src="{{asset('frontEnd/js/main.js')}}"></script>
 
 </body>
 </html>

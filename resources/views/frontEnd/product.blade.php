@@ -27,7 +27,7 @@
                             alt="{{ $product->image }}">
                       
                       @auth
-                        <div class="card-img-overlay d-flex justify-content-end">
+                        <div class="d-flex justify-content-end">
                         @if (!$product->favouritBy(auth()->user()))
                             <form action="{{route('product.fav',$product['id'])}}" method="POST">
                                @csrf
@@ -50,7 +50,7 @@
                         @endauth    
                    
                         <div class="card-body">
-                            <a class="card-link  stretched-link" href="{{route('user.fav',auth()->user()->id)}}">{{$product->name}}</a>
+                            {{-- <a class="card-link" href="{{route('user.fav',auth()->user()->id)}}">{{$product->name}}</a> --}}
                             <h6 class="card-subtitle mb-2 text-muted">{{ $product->meta_keywords }}</h6>
                             <p class="card-text">
                                 {{ $product->details }}
