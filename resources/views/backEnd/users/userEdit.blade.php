@@ -108,11 +108,13 @@
                     <div class="col col-sm-5"><label for="input-large" class=" form-control-label">Image</label>
                     </div>
                     <div class="col col-sm-6"><input type="file" name="image" class=" form-control"
-                            id="image">
+                            id="img">
 
                         @error('image')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <td><img src="{{ asset('storage/'. $user->profile_photo_path )}}" alt="{{ $user->rofile_photo_path }}" width="100px" height="100px" id="imgUpload"> </td>
+
                     </div>
                 </div>
 

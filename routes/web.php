@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\backEnd\favouritesController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backEnd\homeController;
 use App\Http\Controllers\backEnd\usersController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\backEnd\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +18,22 @@ use App\Http\Controllers\backEnd\usersController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-    Route::get('/home', function () {
-        return view('frontEnd.layouts.index');
-    })->name("home");
+Route::get('/home', [HomeController::class, 'index']);
 
 
-
+Route::get('product/{id}',[favouritesController::class,'show'])->name('user.fav');
+Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
+Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav.delete');
 
 
 
 
 // Route::get('admin/home', function () {
 //    return view('backEnd.layouts.index');
+//});
+
 // });
 // Route::namespace('backEnd')->prefix('admin')->group(function (){
 //         Route::get('',[homeController::class,'index'] );
@@ -44,6 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 
+Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
 ########################################  users#####################################
 // Route::resource('users',[usersController::class,'index']);
 
@@ -70,7 +72,7 @@ use App\Http\Controllers\backEnd\CategoriesController;
 
 Route::prefix('admin')->group(function (){
 //    Route::resources(['users' => usersController::class]);
-    Route::get('home',[homeController::class,'index'])->name('admin');
+    Route::get('home',[DashboardController::class,'index'])->name('admin');
     Route::get('category/create',[CategoriesController::class,'create'] );
     Route::post('category/create',[CategoriesController::class,'store'] );
     Route::get('category',[CategoriesController::class,'index'] );
@@ -85,7 +87,7 @@ Route::prefix('admin')->group(function (){
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
 use App\Http\Controllers\backEnd\ProductsController;
 Route::namespace('backEnd')->prefix('admin')->group(function (){
-    Route::get('product/create',[ProductsController::class,'create'] );
+    Route::get('product/create',[ProductsController::class,'create'] )->middleware('checkCategory');
     Route::post('product/create',[ProductsController::class,'store'] );
     Route::get('product',[ProductsController::class,'index'] );
     Route::get('product/{id}',[ProductsController::class,'show'] );
@@ -94,7 +96,8 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
     Route::get('trashed',[ProductsController::class,'trashed'] );
     Route::get('trashed/{id}',[ProductsController::class,'restore'] );
-
-
 });
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
+
+
+

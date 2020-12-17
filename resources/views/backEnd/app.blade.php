@@ -32,7 +32,12 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-    @yield('script')
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  @yield('script')
+
 
 </head>
 
@@ -64,9 +69,10 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
+
                 <li class="{{is_active('home')}}">
                     <a href="{{route('admin')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                </li>
+
 
                 <li class="{{is_active('users')}}">
                     <a href="{{ route('users.index') }}"> <i class="menu-icon fa fa-male"></i>Users</a>
@@ -77,6 +83,9 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 </li>
                 <li class="{{is_active('product')}}">
                     <a href="/admin/product"> <i class="menu-icon fa fa-product-hunt"></i>Products</a>
+                </li>
+                <li class="{{is_active('trashed')}}">
+                    <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
 
             </ul>
@@ -173,11 +182,13 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                         <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
+
                             <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i> Logout</a>
 
                         </form>
 
                     </div>
+
                 </div>
 
                 {{-- <div class="language-select dropdown" id="language-select">
