@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomNumber,
             'details' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'image' => $this->faker->image('public/storage', 640, 480, null, false),
+            'image' => $this->faker->image('public/storage/images', 640, 480, null, false),
             // 'cat_id' => function () {
             //     return factory(App\Category::class)->create()->id;
             // },

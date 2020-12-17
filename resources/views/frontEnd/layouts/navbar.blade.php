@@ -20,7 +20,8 @@
                     <ul>
                         <li ><a href="index.html">Home</a></li>
                         <li class="has-dropdown">
-                            <a href="men.html">Products</a>
+                    
+                            <a href="{{route('user.fav',auth()->user()->id)}}">Products</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail.html">Product Detail</a></li>
                                 <li><a href="cart.html">Shopping Cart</a></li>

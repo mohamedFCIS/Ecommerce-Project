@@ -33,7 +33,7 @@ class Product extends Model
      
     public function favouritBy(User $user){
 
-        return $this->favourits()->contains('user_id',$user->id);
+        return $this->favourits->contains('user_id',$user->id);
     }
 
     // relation to show how many fav done by the users on the product (user->product->favourit)

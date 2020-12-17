@@ -17,16 +17,18 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/products', function () {
-    return view('frontEnd.product');
-});
 
 
 
 
 
-    Route::get('/home', [HomeController::class, 'index']);
 
+Route::get('/home', [HomeController::class, 'index']);
+
+
+Route::get('product/{id}',[favouritesController::class,'show'])->name('user.fav');
+Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
+Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav.delete');
 
 
 
@@ -45,7 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 
-// Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
+Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
 ########################################  users#####################################
 // Route::resource('users',[usersController::class,'index']);
 
