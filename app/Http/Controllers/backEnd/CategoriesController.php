@@ -26,6 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+
         return view('backEnd.category.create');
     }
 
@@ -42,7 +43,7 @@ class CategoriesController extends Controller
             'catogaryName' => 'required|unique:categories,name',
             'catogaryMetaKeyword' => 'required',
             'catogaryMetaDes' => 'required',
-            
+
         ]);
 
 

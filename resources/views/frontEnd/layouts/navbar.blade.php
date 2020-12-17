@@ -18,11 +18,16 @@
             <div class="row">
                 <div class="col-sm-12 text-left menu-1">
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li ><a href="index.html">Home</a></li>
                         <li class="has-dropdown">
-                            <a href="men.html">Men</a>
+                    
+                            <a href="">Products</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail.html">Product Detail</a></li>
+                                @auth
+                                <li> <a href="{{route('user.fav',auth()->user()->id)}}">User Favourits</a></li>
+                                @endauth
+                               
                                 <li><a href="cart.html">Shopping Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="order-complete.html">Order Complete</a></li>
@@ -34,7 +39,6 @@
 
 
 
-                        <li><a href="women.html">Women</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li class="cart">

@@ -53,12 +53,12 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <a href="/admin/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
                 <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="{{ route('users.index') }}"><i class="menu-icon fa fa-group"></i> Users</a>
-                   
+
                 </li>
                 <li >
                     <a href="/admin/category"> <i class="menu-icon fa fa-list-alt"></i>Categories</a>
@@ -197,8 +197,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
                         {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
-                       
-                       
+
+
                     </a>
 
                     <div class="user-menu dropdown-menu">
@@ -210,9 +210,9 @@
                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i>  Logout</a>
-                             
+
                        </form>
-                    
+
                             </div>
                 </div>
 
@@ -263,7 +263,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <div class="content mt-3">
