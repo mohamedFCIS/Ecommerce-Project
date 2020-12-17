@@ -5,6 +5,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\backEnd\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,13 @@ use App\Http\Controllers\HomeController;
 
 
 
-
-
-
-
 Route::get('/home', [HomeController::class, 'index']);
 
 
 Route::get('product/{id}',[favouritesController::class,'show'])->name('user.fav');
 Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
 Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav.delete');
+
 
 
 
@@ -68,9 +66,13 @@ Route::get('notfound', function () {
 
 Route::resource('admin/users', usersController::class);
 
+
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
 use App\Http\Controllers\backEnd\CategoriesController;
+
 Route::prefix('admin')->group(function (){
+//    Route::resources(['users' => usersController::class]);
+    Route::get('home',[DashboardController::class,'index'])->name('admin');
     Route::get('category/create',[CategoriesController::class,'create'] );
     Route::post('category/create',[CategoriesController::class,'store'] );
     Route::get('category',[CategoriesController::class,'index'] );
@@ -97,10 +99,5 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
 });
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
 
-////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
-////////////////////////////////////////////--Start dashboard--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\DashboardController;
-Route::namespace('backEnd')->prefix('admin')->group(function (){
-    Route::get('dashboard',[DashboardController::class,'index'] );
-});
-////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
+
+

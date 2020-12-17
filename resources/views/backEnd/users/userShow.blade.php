@@ -1,4 +1,7 @@
 @extends('backEnd.app')
+@section('title')
+    Users
+    @endsection
 @section('header')
     <h1 class="text-primary"> Users Information</h1>
 @endsection
