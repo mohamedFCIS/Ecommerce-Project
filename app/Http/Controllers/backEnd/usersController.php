@@ -116,11 +116,13 @@ $con = Countries::all();
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
 
         $request->validate([
 
             'name' => "required |min:5| max:60",
-            'email' => 'required|email |unique:users',
+            'email'  =>  'required|email|unique:users,email,'.$user->id,
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
@@ -130,7 +132,6 @@ $con = Countries::all();
 
         ]);
 
-        $user = User::find($id);
         $name = request("name");
         $email = request("email");
         $phone = request("phone");

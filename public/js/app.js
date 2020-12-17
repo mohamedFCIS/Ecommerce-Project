@@ -39259,13 +39259,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
+
 __webpack_require__(/*! /var/www/html/final project/final/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /var/www/html/final project/final/resources/css/app.css */"./resources/css/app.css");
-=======
+
 __webpack_require__(/*! D:\Ecommerce-Project\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Ecommerce-Project\resources\css\app.css */"./resources/css/app.css");
->>>>>>> 4dfe9b8831f800d3349437bbba70a89c96a75451
+
 
 
 /***/ })
