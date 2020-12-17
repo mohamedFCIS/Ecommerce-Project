@@ -21,9 +21,13 @@
                         <li ><a href="index.html">Home</a></li>
                         <li class="has-dropdown">
                     
-                            <a href="{{route('user.fav',auth()->user()->id)}}">Products</a>
+                            <a href="">Products</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail.html">Product Detail</a></li>
+                                @auth
+                                <li> <a href="{{route('user.fav',auth()->user()->id)}}">User Favourits</a></li>
+                                @endauth
+                               
                                 <li><a href="cart.html">Shopping Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="order-complete.html">Order Complete</a></li>

@@ -6,19 +6,16 @@
     @include('frontEnd.layouts.navbar')
 @endsection
 
-@section('gallery')
-    @include('frontEnd.layouts.gallery')
-@endsection
 
 @section('content')
     <h1 style="text-align: center">welcome to products </h1>
 
 
     <div class="container">
-
+  {{-- {{dd($products)}} --}}
         <div class="row col">
             @foreach ($products as $product)
-            {{-- {{dd($product)}} --}}
+          
                 <div class="col-4 col-sm-8 col-md-6 col-lg-4">
                     <div class="card">
                         <img class="card-img"  height="200px"
@@ -26,18 +23,15 @@
 
                             alt="{{ $product->image }}">
                       
+            
+                        <div class="d-flex justify-content-end">
                       
-                        <div class="card-img-overlay d-flex justify-content-end">
-                      
-                          
-                                         
-                      
-                       
+                     
                         </div>
-                      
+                   
                    
                         <div class="card-body">
-                            <a class="card-link  stretched-link" href="{{route('user.fav',auth()->user()->id)}}">{{$product->name}}</a>
+                            <a class="card-link" href="{{route('user.fav',auth()->user()->id)}}">{{$product->name}}</a>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $product->meta_keywords }}</h6>
                             <p class="card-text">
                                 {{ $product->details }}

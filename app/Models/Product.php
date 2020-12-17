@@ -6,8 +6,7 @@ use App\Models\Favourite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
+use Illuminate\Support\Facades\File;
 
 class Product extends Model
 {
@@ -43,4 +42,19 @@ class Product extends Model
         // return $this->hasManyThrough(Like::class,Post::class);
         return $this->hasManyThrough(Favourite::class,User::class);
     }
+
+// $item->img
+
+//     public function getImgAttribute(){
+
+//         $path = public_path('images');
+
+//         if(File::exists($path)){
+
+//             return $path . $this->iamge;
+//         }
+
+//         return $path . 'not_found.png';
+
+//     }
 }
