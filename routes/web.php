@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\backEnd\DashboardController;
+use App\Http\Controllers\backEnd\cartController as BackEndCartController;
+use  Gloudemans\Shoppingcart\Facades\Cart;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,3 +104,16 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
 
 
 
+/*cart */
+Route::get('/cart',[BackEndCartController::class,'index']);
+Route::post('/cart',[BackEndCartController::class,'store'])->name('cart');
+Route::get('/empty',function(){
+      Cart::instance('default')->destroy();
+  });
+Route::delete('/cart/remove/{product}',[BackEndCartController::class,'delete'])->name('cart.delete');
+Route::post('/cart/save/{product}',[BackEndCartController::class,'save'])->name('cart.save');  
+Route::delete('/cart/removeSaveLater/{product}',[BackEndCartController::class,'RemovefromSaveLater'])->name('cart.removeSave');
+
+Route::post('/cart/add/{product}',[BackEndCartController::class,'AddToCart'])->name('addCart');  
+
+//////////////

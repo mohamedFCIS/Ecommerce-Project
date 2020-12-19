@@ -8,12 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
-class Product extends Model
+
+class Product extends Model implements Buyable
 {
     use SoftDeletes;
     use HasFactory;
     protected $guarded = [];
+    public function getBuyableIdentifier($options = null) {
+        return $this->id;
+    }
+
+    public function getBuyableDescription($options = null) {
+        return $this->details;
+    }
+
+    public function getBuyablePrice($options = null) {
+        return $this->price;
+    }
     public function category(){
         return $this->belongsTo(Category::class , 'cat_id' );
 

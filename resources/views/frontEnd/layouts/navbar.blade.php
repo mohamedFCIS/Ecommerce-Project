@@ -91,7 +91,11 @@
                             @endif
 
                         </li>
-                        <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+                        <li class="cart"><a href="{{route('cart')}}"><i class="icon-shopping-cart"></i> Cart
+                        @if(Cart::instance('default')->count()>0)
+                          <strong>[{{Cart::instance('default')->count()}}]</strong>
+                          @endif
+                        </a></li>
 
 
 
