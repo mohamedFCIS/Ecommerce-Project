@@ -36,7 +36,7 @@
 
 
 
-    
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -109,7 +109,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
         <div class="header-menu">
 
             <div class="col-sm-7">
-                
+
                 <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                 <div class="header-left">
                     <a href="{{ url('/home') }}"
@@ -153,7 +153,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                             <i class="ti-email"></i>
                             <span class="count bg-primary">9</span>
                         </button>
-                        
+
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media bg-flat-color-1" href="#">
@@ -167,21 +167,21 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                             </a>
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-5">
-                
+
                 <div class="user-area dropdown float-right">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
+                    {{-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" /> --}}
 
                         {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
 

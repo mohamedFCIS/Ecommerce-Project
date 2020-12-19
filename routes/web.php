@@ -30,15 +30,6 @@ Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav
 
 
 
-// Route::get('admin/home', function () {
-//    return view('backEnd.layouts.index');
-//});
-
-// });
-// Route::namespace('backEnd')->prefix('admin')->group(function (){
-//         Route::get('',[homeController::class,'index'] );
-// });
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -97,7 +88,7 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('trashed',[ProductsController::class,'trashed'] );
     Route::get('trashed/{id}',[ProductsController::class,'restore'] );
 });
-////////////////////////////////////////////--Start product--//////////////////////////////////////////
+////////////////////////////////////////////--End product--//////////////////////////////////////////
 
 
 
