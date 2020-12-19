@@ -1,8 +1,10 @@
-
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
@@ -24,13 +26,22 @@
     <link rel="stylesheet" href="/backEnd/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="/backEnd/vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="/backEnd/vendors/selectFX/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="/backEnd/vendors/jqvmap/dist/jqvmap.min.css">
+{{--    <link rel="stylesheet" href="/backEnd/vendors/jqvmap/dist/jqvmap.min.css">--}}
 
     <link rel="stylesheet" href="/backEnd/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+
+
+    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
   @yield('script')
+
 
 </head>
 
@@ -39,81 +50,48 @@
 
 <!-- Left Panel -->
 
+{{--active panel--}}
+@php
+    function is_active(string $routeName){
+return null !== request()->segment(2) && request()->segment(2) == $routeName ? 'active' : '' ;
+}
+@endphp
+{{--end active panel--}}
+
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
 
         <div class="navbar-header">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                    aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="./"><img src="{{asset('storage/backEnd_images/logo.png')}}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{asset('storage/backEnd_images/logo2.png')}}" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="./"><img src="{{asset('storage/backEnd_images/logo2.png')}}"
+                                                          alt="Logo"></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="/admin/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                </li>
-                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="{{ route('users.index') }}"><i class="menu-icon fa fa-group"></i> Users</a>
+
+                <li class="{{is_active('home')}}">
+                    <a href="{{route('admin')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+
+
+                <li class="{{is_active('users')}}">
+                    <a href="{{ route('users.index') }}"> <i class="menu-icon fa fa-male"></i>Users</a>
 
                 </li>
-                <li >
+                <li class="{{is_active('category')}}">
                     <a href="/admin/category"> <i class="menu-icon fa fa-list-alt"></i>Categories</a>
-                        </li>
-                        <li >
-                            <a href="/admin/product"> <i class="menu-icon fa fa-product-hunt"></i>Products</a>
-                                </li>
-                                <li >
-                                    <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
-                                        </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                        <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
-                    </ul>
+                </li>
+                <li class="{{is_active('product')}}">
+                    <a href="/admin/product"> <i class="menu-icon fa fa-product-hunt"></i>Products</a>
+                </li>
+                <li class="{{is_active('trashed')}}">
+                    <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
 
-                <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
-
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                        <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                        <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
-                    </ul>
-                </li>
-                <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                        <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
-                    </ul>
-                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
@@ -131,18 +109,23 @@
         <div class="header-menu">
 
             <div class="col-sm-7">
+                
                 <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                 <div class="header-left">
+                    <a href="{{ url('/home') }}"
+                    class="text-sm text-primary underline">Site</a>
                     <button class="search-trigger"><i class="fa fa-search"></i></button>
                     <div class="form-inline">
                         <form class="search-form">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
+                                   aria-label="Search">
                             <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
 
                     <div class="dropdown for-notification">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="count bg-danger">5</span>
                         </button>
@@ -170,10 +153,12 @@
                             <i class="ti-email"></i>
                             <span class="count bg-primary">9</span>
                         </button>
+                        
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="{{asset('storage/backEnd_images/1.jpg')}}"></span>
+                                <span class="photo media-left"><img alt="avatar"
+                                                                    src="{{asset('storage/backEnd_images/1.jpg')}}"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
@@ -182,14 +167,22 @@
                             </a>
 
                         </div>
+                        
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-5">
+                
                 <div class="user-area dropdown float-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
                         {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
+
                         {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
 
 
@@ -198,16 +191,19 @@
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
+                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
+                                class="count">13</span></a>
 
                         <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-                       <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i>  Logout</a>
 
-                       </form>
+                            <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i> Logout</a>
 
-                            </div>
+                        </form>
+
+                    </div>
+
                 </div>
 
                 {{-- <div class="language-select dropdown" id="language-select">
@@ -275,11 +271,11 @@
 
 
 {{--<script src="/backEnd/vendors/chart.js/dist/Chart.bundle.min.js"></script>--}}
-<script src="/backEnd/assets/js/dashboard.js"></script>
+{{--<script src="/backEnd/assets/js/dashboard.js"></script>--}}
 {{--<script src="/backEnd/assets/js/widgets.js"></script>--}}
-<script src="/backEnd/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/backEnd/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-<script src="/backEnd/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+{{--<script src="/backEnd/vendors/jqvmap/dist/jquery.vmap.min.js"></script>--}}
+{{--<script src="/backEnd/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>--}}
+{{--<script src="/backEnd/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>--}}
 {{--<script>--}}
 {{--    (function($) {--}}
 {{--        "use strict";--}}
