@@ -76,8 +76,9 @@
     </div>
 
 @endsection
-{{-- @section('script')
-    <script>
+@section('script')
+
+    {{-- <script>
       function addToWishList(id) { 
            
        
@@ -93,10 +94,9 @@
             }
         });
     }
-     
-
-
     </script> --}}
+    
+
 @endsection
 @section('footer')
     @include('frontEnd.layouts.footer')
