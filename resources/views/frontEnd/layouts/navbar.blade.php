@@ -25,7 +25,7 @@
                             <ul class="dropdown">
                                 <li><a href="product-detail.html">Product Detail</a></li>
                                 @auth
-                                <li> <a href="{{route('user.fav',auth()->user()->id)}}">User Favourits</a></li>
+                                <li> <a href="{{route('user.fav')}}">User Favourits</a></li>
                                 @endauth
                                
                                 <li><a href="cart.html">Shopping Cart</a></li>

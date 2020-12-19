@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Favourite;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -45,16 +46,12 @@ class Product extends Model
 
 // $item->img
 
-//     public function getImgAttribute(){
+    public function getImageAttribute()
+    {     
+        if( Storage::disk('local')->exists('public/'.$this->attributes['image'])){
+            return asset('storage/'.$this->attributes['image']);
+        }
+        return $this->attributes['image'];
 
-//         $path = public_path('images');
-
-//         if(File::exists($path)){
-
-//             return $path . $this->iamge;
-//         }
-
-//         return $path . 'not_found.png';
-
-//     }
+    }
 }
