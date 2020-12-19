@@ -23,8 +23,8 @@ use App\Http\Controllers\backEnd\DashboardController;
 Route::get('/home', [HomeController::class, 'index']);
 
 
-Route::get('product/{id}',[favouritesController::class,'show'])->name('user.fav');
-Route::Post('product/{id}',[favouritesController::class,'store'])->name('product.fav');
+Route::get('favourit',[favouritesController::class,'index'])->name('user.fav');
+Route::Post('favourit/{id}',[favouritesController::class,'store'])->name('fav.add');
 Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav.delete');
 
 
