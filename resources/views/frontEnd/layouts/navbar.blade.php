@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-sm-12 text-left menu-1">
                     <ul>
-                        <li ><a href="index.html">Home</a></li>
+                        <li ><a href="/home">Home</a></li>
                         <li class="has-dropdown">
 
                             <a href="{{route('products')}}">Products</a>
@@ -39,8 +39,8 @@
 
 
 
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="/aboutUs">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
                         <li class="cart">
                             @if (Route::has('login'))
                                 @if (Auth::check())
