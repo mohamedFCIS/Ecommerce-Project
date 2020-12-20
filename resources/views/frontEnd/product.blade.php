@@ -22,25 +22,30 @@
                 <div class="col-4 col-sm-8 col-md-6 col-lg-4">
                     <div class="card">
                         <img class="card-img"  height="200px"
-                        src="{{ asset('storage/'. $product->image) }}"
+                        src="{{ $product->image }}"
 
                             alt="{{ $product->image }}">
-                      
+                 
                       @auth
                         <div class="d-flex justify-content-end">
                         @if (!$product->favouritBy(auth()->user()))
-                            <form action="{{route('product.fav',$product['id'])}}" method="POST">
-                               @csrf
-                                <button type="submit">
-                                    <i class="far fa-heart"></i>
-                                    
+                        <form action="{{route('fav.add',$product['id'])}}" method="POST">
+                            @csrf
+                                <button  type="submit"> 
+                                    <i id="white" class="far fa-heart"></i>
                                 </button>
                             </form>
+                    
+                            {{-- <button   type="button"  onclick="addToWishList({{$product->id}})">
+                                <i id="white" class="far fa-heart"></i>
+                            
+                            </button> --}}
+                         
                         @else                          
                         <form action="{{route('fav.delete',$product['id'])}}" method="POST">
                             @csrf
                             @method('delete')
-                                <button type="submit">
+                                <button  type="submit">
                                    
                                     <i class="fa fa-heart "></i>
                                 </button>
@@ -71,7 +76,28 @@
     </div>
 
 @endsection
+@section('script')
 
+    {{-- <script>
+      function addToWishList(id) { 
+           
+       
+            $.ajax({
+            type: "Post",
+            url: "{{route('fav.add',$product['id'])}}",
+            data: {
+                '_token' : "{{csrf_token()}}",
+              },
+           
+            success: function (response) {
+                alert(response.message);
+            }
+        });
+    }
+    </script> --}}
+    
+
+@endsection
 @section('footer')
     @include('frontEnd.layouts.footer')
 @endsection

@@ -91,6 +91,9 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 <li class="{{is_active('trashed')}}">
                     <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
+                <li class="{{is_active('contact')}}">
+                    <a href="/admin/contact"> <i class="menu-icon fa fa-envelope"></i>messages</a>
+                </li>
 
             </ul>
         </div><!-- /.navbar-collapse -->

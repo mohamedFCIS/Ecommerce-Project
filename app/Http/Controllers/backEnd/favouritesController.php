@@ -17,7 +17,9 @@ class favouritesController extends Controller
      */
     public function index()
     {
-       
+       $favourites = Favourite::where('user_id',auth()->user()->id)->with(['product'])->get();
+      
+       return view('frontEnd.usersFavourit',['favourites' => $favourites]);
     }
 
     /**
@@ -44,7 +46,11 @@ class favouritesController extends Controller
             'user_id' => $request->user()->id
         ]);
 
-         return back();   
+        // Favourite::create(['user_id' => 1, 'product_id'=> 2]);
+
+        //  return response()->json(['message' => "The product has been added"]);   
+        return back();
+   
     }
 
     /**
@@ -53,17 +59,9 @@ class favouritesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,Favourite $favourite)
+    public function show($id)
     {
-       $user = User::find($id);
-        
-        // $products = $user->favourits()->get();
-      
-       $products = $favourite->where('user_id',$user->id)->get();
-    //    dd($products); 
-        // dd($products->favourits()->where('user_id',$user->id)->get());
-
-       return view('frontEnd.usersFavourit',['products'=>$products,'user'=>$user]);
+       
     }
 
     /**
