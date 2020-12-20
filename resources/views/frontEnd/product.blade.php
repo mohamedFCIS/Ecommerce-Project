@@ -12,7 +12,9 @@
 
 @section('content')
     <h1 style="text-align: center">welcome to products </h1>
-
+    @if(session()->has('msg'))
+   <div class="alert alert-success">{{session()->get('msg')}}</div>
+  @endif
 
     <div class="container">
 
@@ -65,8 +67,16 @@
                                 <div class="price text-success">
                                     <h5 class="mt-4">${{ $product->price }}</h5>
                                 </div>
-                                <a href="#" class="btn btn-danger mt-3 "><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                            </div>
+                                <form action="{{ route('cart')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                   
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <input type="hidden" name="name" value="{{ $product->name }}">
+                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                  
+                                <input type="submit"  class="btn btn-danger mt-3" value="Add to Cart"><i class="fas fa-shopping-cart"></i> 
+                                </form>
+                                </div>
                         </div>
                     </div>
                 </div>

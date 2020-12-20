@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-sm-12 text-left menu-1">
                     <ul>
-                        <li ><a href="index.html">Home</a></li>
+                        <li ><a href="/home">Home</a></li>
                         <li class="has-dropdown">
 
                             <a href="">Products</a>
@@ -29,7 +29,7 @@
                                 @endauth
 
                                 <li><a href="cart.html">Shopping Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="{{route('checkout.index')}}">Checkout</a></li>
                                 <li><a href="order-complete.html">Order Complete</a></li>
                                 <li><a href="add-to-wishlist.html">Wishlist</a></li>
                             </ul>
@@ -91,7 +91,11 @@
                             @endif
 
                         </li>
-                        <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+                        <li class="cart"><a href="{{route('cart')}}"><i class="icon-shopping-cart"></i> Cart
+                        @if(Cart::instance('default')->count()>0)
+                          <strong>[{{Cart::instance('default')->count()}}]</strong>
+                          @endif
+                        </a></li>
 
 
 
