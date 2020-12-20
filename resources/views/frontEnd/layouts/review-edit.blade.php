@@ -14,8 +14,24 @@
         @csrf
         @method('put')
         <textarea name="comment" id="" cols="80" rows="5" class="bg-white rounded-md" placeholder="Write Your Comment Here" value="">{{$review->comment}}</textarea><br>
-        <label class="fs-2" for="rate">Your rate here</label>
-        <input class="m-2 rounded-lg" style="border: black 1px solid" type="text" name="rate" value="{{$review['rate']}}"><br>
+        <p class="text-success text-lg " >Your rate here</p>
+        <div class="rating">
+            <input type="radio" name="rate"
+                value="5" id="5">
+            <label for="5">☆</label>
+            <input type="radio" name="rate"
+                value="4" id="4">
+            <label for="4">☆</label>
+            <input type="radio" name="rate"
+                value="3" id="3">
+            <label for="3">☆</label>
+            <input type="radio" name="rate"
+                value="2" id="2">
+            <label for="2">☆</label>
+            <input type="radio" name="rate"
+                value="1" id="1"><label for="1">☆</label>
+
+        </div>
         <button class="btn btn-success" type="submit">Send Review</button>
     </form>	
                            

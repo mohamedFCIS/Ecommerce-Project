@@ -68,6 +68,11 @@
                             <p class="card-text">
                                 {{ $product->details }}
                             </p>
+                            <p class="card-text">
+                                {{ $product->reviews->count() }} {{Str::plural('Review',$product->reviews->count())}}
+                                
+                            </p>
+
 
                             <div class="buy d-flex justify-content-between align-items-center">
                                 <div class="price text-success">

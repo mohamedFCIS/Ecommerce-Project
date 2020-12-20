@@ -44,7 +44,7 @@ class ReviewController extends Controller
         $this->validate($request,[
 
             'comment' => 'required',
-            'rate' => 'required'
+            'rate' => 'required|min:1|max:5'
         ]);
             // dd($request);
             Review::create([

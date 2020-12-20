@@ -25,7 +25,7 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-// Route::get('/', [HomeController::class, 'index'])->name('products');
+Route::get('/', [HomeController::class, 'index'])->name('products');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('products');

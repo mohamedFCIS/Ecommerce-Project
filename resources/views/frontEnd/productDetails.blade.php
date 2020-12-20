@@ -51,13 +51,10 @@
                         <h3>{{ $product->name }}</h3>
                         <p class="price">
                             <span>{{ $product->price }}</span>
-                            <span class="rate">
-                                <i class="icon-star-full"></i>
-                                <i class="icon-star-full"></i>
-                                <i class="icon-star-full"></i>
-                                <i class="icon-star-full"></i>
-                                <i class="icon-star-half"></i>
-                                (74 Rating)
+                            <span class="text-info">
+                                {{ $product->name }} have
+                                ({{ $product->reviews->avg('rate') ?? 0 }}
+                                {{ Str::plural('Star', $product->reviews->avg('rate')) }} avg Rating)
                             </span>
                         </p>
                         <p>{{ $product->details }}</p>
@@ -176,24 +173,18 @@
                                                         <div class="desc bg-gray-200 m-3 p-3 rounded-md">
                                                             <h4>
                                                                 <span class="text-left">{{ $review->user['name'] }}</span>
+                                                                <span class="text-left"></span>
                                                                 <span
                                                                     class="text-right">{{ $review->created_at->diffForHumans() }}</span>
                                                             </h4>
                                                             <p class="star">
                                                                 <span>
-																
-                                                                    <i class="icon-star-full"></i>
-                                                                    <i class="icon-star-full"></i>
-                                                                    <i class="icon-star-full"></i>
-                                                                    <i class="icon-star-half"></i>
-                                                                    <i class="icon-star-empty"></i>
+                                                                    {{ $review->rate }}
+                                                                    {{ Str::plural('star', $review->rate) }} From Five Stars
                                                                 </span>
-
                                                                 <span class="text-right"><a href="#" class="reply"><i
                                                                             class="icon-reply"></i></a></span>
-
                                                             </p>
-
                                                             <p class="bg-white rounded-2xl p-2">{{ $review->comment }}</p>
                                                             @can('delete', $review)
                                                                 <span>
@@ -212,48 +203,34 @@
                                                         </div>
                                                         {{-- @if ($review->user->id == auth()->user()->id)
                                                             --}}
-
-
-
                                                             {{-- @endif
                                                         --}}
-
                                                     @endforeach
-
-
                                                 </div>
-                                                <div class="review bg-blue-200 p-2 rounded-md">
-
-                                                    <form action="{{ route('add.review', $product['id']) }}" method="POST">
-                                                        @csrf
-
-                                                        <textarea name="comment" id="" cols="80" rows="5"
-                                                            class="bg-white rounded-md"
-                                                            placeholder="Write Your Comment Here"></textarea><br>
-                                                        <label class="fs-2" for="rate">Your rate here</label>
-                                                        <div class="rating">
-                                                            <input type="radio" name="rate"
-                                                                value="5" id="5">
-                                                            <label for="5">☆</label>
-                                                            <input type="radio" name="rate"
-                                                                value="4" id="4">
-                                                            <label for="4">☆</label>
-                                                            <input type="radio" name="rate"
-                                                                value="3" id="3">
-                                                            <label for="3">☆</label>
-                                                            <input type="radio" name="rate"
-                                                                value="2" id="2">
-                                                            <label for="2">☆</label>
-                                                            <input type="radio" name="rate"
-                                                                value="1" id="1"><label for="1">☆</label>
-
-                                                        </div>
-                                                        <button class="btn btn-success" type="submit">Send Review</button>
-                                                    </form>
-
-
-                                                </div>
-
+                                                @auth
+                                                    <div class="review bg-blue-200 p-2 rounded-md">
+                                                        <form action="{{ route('add.review', $product['id']) }}" method="POST">
+                                                            @csrf
+                                                            <textarea name="comment" id="" cols="80" rows="5"
+                                                                class="bg-white rounded-md"
+                                                                placeholder="Write Your Comment Here"></textarea><br>
+                                                            <p class="text-success text-lg ">Your rate here</p>
+                                                            <div class="rating">
+                                                                <input type="radio" name="rate" value="5" id="5">
+                                                                <label for="5">☆</label>
+                                                                <input type="radio" name="rate" value="4" id="4">
+                                                                <label for="4">☆</label>
+                                                                <input type="radio" name="rate" value="3" id="3">
+                                                                <label for="3">☆</label>
+                                                                <input type="radio" name="rate" value="2" id="2">
+                                                                <label for="2">☆</label>
+                                                                <input type="radio" name="rate" value="1" id="1"><label
+                                                                    for="1">☆</label>
+                                                            </div>
+                                                            <button class="btn btn-success" type="submit">Send Review</button>
+                                                        </form>
+                                                    </div>
+                                                @endauth
 
                                             </div>
                                             <div class="col-md-4">
