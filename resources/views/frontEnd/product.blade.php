@@ -34,7 +34,9 @@
                         <form action="{{route('fav.add',$product['id'])}}" method="POST">
                             @csrf
                                 <button  type="submit"> 
+                                 <h3>
                                     <i id="white" class="far fa-heart"></i>
+                                     </h3>
                                 </button>
                             </form>
                     
@@ -49,7 +51,9 @@
                             @method('delete')
                                 <button  type="submit">
                                    
-                                    <i class="fa fa-heart "></i>
+                                    <h3>
+                                        <i class="fa fa-heart "></i>
+                                    </h3>
                                 </button>
                             </form>
                         @endif   
@@ -57,7 +61,9 @@
                         @endauth    
                    
                         <div class="card-body">
-                            {{-- <a class="card-link" href="{{route('user.fav',auth()->user()->id)}}">{{$product->name}}</a> --}}
+                            <h4>
+                                <a class="card-link text-primary" href="{{route('product.details',$product->id)}}">{{$product->name}}</a>
+                                </h4>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $product->meta_keywords }}</h6>
                             <p class="card-text">
                                 {{ $product->details }}
@@ -105,7 +111,7 @@
         });
     }
     </script> --}}
-    
+
 
 @endsection
 @section('footer')
