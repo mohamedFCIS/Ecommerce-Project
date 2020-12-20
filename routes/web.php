@@ -1,15 +1,20 @@
 <?php
 
-use App\Http\Controllers\backEnd\favouritesController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\HomeController;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\backEnd\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\frontEnd\ordersController;
-use App\Http\Controllers\backEnd\cartController as BackEndCartController;
-use  Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\backEnd\ProductsController;
+use App\Http\Controllers\backEnd\CategoriesController;
+use App\Http\Controllers\backEnd\favouritesController;
+
+use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +27,10 @@ use  Gloudemans\Shoppingcart\Facades\Cart;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('products');
 
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('products');
 
 Route::get('/aboutUs', function () {
     return view('frontEnd.aboutUs');
@@ -43,6 +49,18 @@ Route::get('admin/contact/{id}/delete', [ContactController::class, 'destroy']);
 Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');
 Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');
 Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');
+
+Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');
+
+
+// Route::get('revieww/{id}',[ReviewController::class,'index']);
+Route::get('review/{review}',[ReviewController::class,'edit'])->name('edit.review');
+
+Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
+Route::put('review/{review}',[ReviewController::class,'update'])->name('update.review');
+
+
+Route::delete('review/{review}',[ReviewController::class,'destroy'])->name('delete.review');
 
 
 
@@ -74,7 +92,6 @@ Route::resource('admin/users', usersController::class);
 
 
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\CategoriesController;
 
 Route::prefix('admin')->group(function () {
     //    Route::resources(['users' => usersController::class]);
@@ -90,7 +107,21 @@ Route::prefix('admin')->group(function () {
 ////////////////////////////////////////////--End Category--//////////////////////////////////////////
 
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\ProductsController;
+use App\Http\Controllers\backEnd\cartController as BackEndCartController;
+Route::namespace('backEnd')->prefix('admin')->group(function (){
+    Route::get('product/create',[ProductsController::class,'create'] )->middleware('checkCategory');
+    Route::post('product/create',[ProductsController::class,'store'] );
+    Route::get('product',[ProductsController::class,'index'] );
+    Route::get('product/{id}',[ProductsController::class,'show'] );
+    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );
+    Route::post('product/{id}',[ProductsController::class,'update'] );
+    Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
+    Route::get('trashed',[ProductsController::class,'trashed'] );
+    Route::get('trashed/{id}',[ProductsController::class,'restore'] );
+});
+////////////////////////////////////////////--Start product--//////////////////////////////////////////
+
+
 
 Route::namespace('backEnd')->prefix('admin')->group(function () {
     Route::get('product/create', [ProductsController::class, 'create'])->middleware('checkCategory');

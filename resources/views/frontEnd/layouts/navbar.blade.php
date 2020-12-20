@@ -21,7 +21,7 @@
                         <li ><a href="/home">Home</a></li>
                         <li class="has-dropdown">
 
-                            <a href="">Products</a>
+                            <a href="{{route('products')}}">Products</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail.html">Product Detail</a></li>
                                 @auth

@@ -57,7 +57,12 @@ class Product extends Model implements Buyable
         return $this->hasManyThrough(Favourite::class,User::class);
     }
 
-// $item->img
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 
     public function getImageAttribute()
     {     
@@ -67,4 +72,6 @@ class Product extends Model implements Buyable
         return $this->attributes['image'];
 
     }
+
+
 }
