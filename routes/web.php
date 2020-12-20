@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\backEnd\DashboardController;
+use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,12 @@ Route::Post('favourit/{id}',[favouritesController::class,'store'])->name('fav.ad
 Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav.delete');
 
 
+
+Route::get('product/{id}',[ProductDetailsController::class,'show'])->name('product.details');
+
+
+// Route::get('revieww/{id}',[ReviewController::class,'index']);
+Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
 
 
 // Route::get('admin/home', function () {
