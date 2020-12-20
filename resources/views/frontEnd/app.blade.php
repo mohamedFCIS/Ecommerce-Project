@@ -36,8 +36,10 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="{{url('frontEnd/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('frontEnd/css/rating.css')}}">
 
+    <link rel="stylesheet" href="{{url('frontEnd/css/style.css')}}">
+    
 </head>
 <body>
 

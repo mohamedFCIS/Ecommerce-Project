@@ -9,6 +9,7 @@ use App\Http\Controllers\frontEnd\ordersController;
 use App\Http\Controllers\backEnd\ProductsController;
 use App\Http\Controllers\backEnd\DashboardController;
 use App\Http\Controllers\backEnd\CategoriesController;
+use App\Http\Controllers\backEnd\favouritesController;
 
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\ReviewController;
@@ -24,9 +25,10 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
+// Route::get('/', [HomeController::class, 'index'])->name('products');
 
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('products');
 
 
 Route::get('favourit',[favouritesController::class,'index'])->name('user.fav');
@@ -35,12 +37,17 @@ Route::delete('product/{id}',[favouritesController::class,'destroy'])->name('fav
 
 
 
-Route::get('product/{id}',[ProductDetailsController::class,'show'])->name('product.details');
+Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');
 
 
 // Route::get('revieww/{id}',[ReviewController::class,'index']);
+Route::get('review/{review}',[ReviewController::class,'edit'])->name('edit.review');
+
 Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
-Route::post('review/{review}',[ReviewController::class,'destroy'])->name('delete.review');
+Route::put('review/{review}',[ReviewController::class,'update'])->name('update.review');
+
+
+Route::delete('review/{review}',[ReviewController::class,'destroy'])->name('delete.review');
 
 
 // Route::get('admin/home', function () {
@@ -81,7 +88,6 @@ Route::resource('admin/users', usersController::class);
 
 
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\favouritesController;
 
 Route::prefix('admin')->group(function (){
 //    Route::resources(['users' => usersController::class]);

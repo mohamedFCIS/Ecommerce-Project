@@ -22,7 +22,7 @@ class CreateReviewsTable extends Migration
                 $table->foreign('product_id')->references('id')->on('products')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->string('comment')->nullable();
-            $table->string('rate')->nullable();
+            $table->integer('rate')->nullable();
             $table->timestamps();
         });
     }

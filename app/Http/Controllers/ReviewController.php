@@ -53,7 +53,7 @@ class ReviewController extends Controller
             'comment' => $request->comment,
             'rate' => $request->rate,
         ]);
-
+                
         return back();
     }
 
@@ -76,7 +76,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+      return view('frontEnd.layouts.review-edit',['review' => $review]);
     }
 
     /**
@@ -88,7 +88,31 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+        $this->validate($request,[
+            'comment'=> 'required',
+            'rate' => 'required'
+        ]);
+        // dd($review);
+         $review->update([
+
+            'user_id' => auth()->user()->id,
+            'product_id'=> $review->product_id ,
+             'comment' => $request->comment,
+              'rate' => $request->rate  
+         ]) ;
+        //  $product = Product::find($review->product_id );
+        // dd($request);
+       
+        // $review->comment = $request->comment;
+        // $review->rate = $request->rate;
+
+        // $review->save();
+       
+        //  return back();
+        // $reviews = Review::where('product_id',$product->id)->with('user')->get();
+        //  return view('frontEnd.productDetails',['reviews'=>$review]);
+        return redirect(route('product.details',$review->product_id ));
+
     }
 
     /**
@@ -99,7 +123,10 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
+        // dd($review);
+        $this->authorize('delete',$review);
+
         $review->delete();
-        back();
+        return back();
     }
 }

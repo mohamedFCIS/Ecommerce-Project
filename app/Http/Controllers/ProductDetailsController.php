@@ -48,12 +48,12 @@ class ProductDetailsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
         
-        $product = Product::find($id);
-        $reviews = Review::where('product_id',$product->id)->with('user')->get();
-        return view("frontEnd.productDetails",['product'=>$product,'reviews'=>$reviews]);
+        $product = $product->load('reviews');
+        
+        return view("frontEnd.productDetails",['product'=>$product]);
     }
 
     /**
