@@ -10,42 +10,42 @@ Shopping Cart
 @section('content')
 <!doctype html>
 <html class="no-js" lang="zxx">
-    
+
 <!-- shopping-cart31:32-->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-       
+
     <body>
-    
+
     <div class="container">
 
 <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shopping Cart</h2>
 <hr>
-@if(Cart::instance('default')->count()>0) 
+@if(Cart::instance('default')->count()>0)
 
 <h4 class="mt-5">{{Cart::instance('default')->count()}} items in Shopping Cart</h4>
 
 <div class="cart-items">
-    
+
     <div class="row">
-        
+
         <div class="col-md-12">
 
         @if(session()->has('msg'))
     <div class="alert alert-success">{{session()->get('msg')}}</div>
 @endif
-            
+
             <table class="table">
-                
+
                 <tbody>
                 @foreach(Cart::instance('default')->content() as $item)
                     <tr>
                         <td><img class="card-img"  src="{{$item->model->image}}"   style="width: 5em"></td>
                         <td>
-                            <strong>{{ $item->model->name }}</strong><br>{{$item->model->details}} 
+                            <strong>{{ $item->model->name }}</strong><br>{{$item->model->details}}
                         </td>
-                        
+
                         <td>
                         <form action="{{route('cart.delete',$item->rowId)}}" method="post">
                             @csrf
@@ -56,22 +56,22 @@ Shopping Cart
                             @csrf
                             <button type="submit" class="btn btn-dark">Save</button><br>
                             </form>
-                        
+
                         </td>
-                        
+
                         <td>
                             <select name="" id="" class="form-control" style="width: 4.7em">
                                 <option value="">1</option>
-                            
+
                             </select>
                         </td>
-                        
+
                         <td>${{$item->total()}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-                   
+
         <!-- Price Details -->
             <div class="col-md-6">
                     <div class="sub-total">
@@ -93,13 +93,13 @@ Shopping Cart
                                     <th>Total</th>
                                     <th>${{ Cart::total() }}</th>
                                 </tr>
-                         </table>           
+                         </table>
                      </div>
                 </div>
             <!-- Save for later  -->
             <div class="col-md-12">
                 <a href="/home" class="btn btn-outline-dark">Continue Shopping</a>
-                <a href="{{url('checkout')}}" class="btn btn-outline-info" >Proceed to checkout</a>
+                <a href="{{route('checkout.index')}}" class="btn btn-outline-info" >Proceed to checkout</a>
                 <hr>
             </div>
         @else
@@ -111,15 +111,15 @@ Shopping Cart
             @if(Cart::instance('save')->count()>0)
             <h4 class="mt-5">{{Cart::instance('save')->count()}} items save for later</h4>
             <table class="table">
-                
+
                 <tbody>
                 @foreach(Cart::instance('save')->content() as $item)
                     <tr>
                         <td><img class="card-img"  src="{{$item->model->image}}"   style="width: 5em"></td>
                         <td>
-                            <strong>{{ $item->model->name }}</strong><br>{{$item->model->details}} 
+                            <strong>{{ $item->model->name }}</strong><br>{{$item->model->details}}
                         </td>
-                        
+
                         <td>
                         <form action="{{route('cart.removeSave',$item->rowId)}}" method="post">
                             @csrf
@@ -130,16 +130,16 @@ Shopping Cart
                             @csrf
                             <button type="submit" class="btn btn-dark">move to cart</button><br>
                             </form>
-                        
+
                         </td>
-                        
+
                         <td>
                             <select name="" id="" class="form-control" style="width: 4.7em">
                                 <option value="">1</option>
-                             
+
                             </select>
                         </td>
-                        
+
                         <td>${{$item->total()}}</td>
                     </tr>
                     @endforeach
