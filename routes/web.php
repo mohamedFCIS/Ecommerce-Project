@@ -36,6 +36,7 @@ Route::get('product/{id}',[ProductDetailsController::class,'show'])->name('produ
 
 // Route::get('revieww/{id}',[ReviewController::class,'index']);
 Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
+Route::post('review/{review}',[ReviewController::class,'destroy'])->name('delete.review');
 
 
 // Route::get('admin/home', function () {

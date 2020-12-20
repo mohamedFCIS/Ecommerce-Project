@@ -173,6 +173,11 @@
 												</p>
 												<p>{{$review->comment}}</p>
 											</div>
+											<form action="{{route('delete.review',$review)}}" method="post">
+												@csrf
+												@method('delete')
+												<button type="submit" class="btn btn-danger">Delete</button>	
+												</form>	
 												@endforeach
 												
 												
@@ -186,7 +191,8 @@
 													<label class="fs-2" for="rate">Your rate here</label>
 													<input class="m-2 rounded-2xl" style="border: black 1px solid" type="text" name="rate"><br>
 													<button class="btn btn-success" type="submit">Send Review</button>
-												</form>					   		
+												</form>	
+															   		
 										   	</div>
 										   
 										   	
