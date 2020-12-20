@@ -57,7 +57,13 @@
                                         <div class="user-area dropdown float-right">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
+                                                @if ( Auth::user()->profile_photo_path =='')
+                                                      <p>{{ Auth::user()->name }}</p>
+                                                    @else
                                                 <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
+                                                          
+                                                
+                                                @endif
 
 
 

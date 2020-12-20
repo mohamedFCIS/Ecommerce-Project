@@ -58,7 +58,7 @@ class usersController extends Controller
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
-            'image'=> 'required|image',
+            'image' => 'required|image',
 
 
         ]);
@@ -70,7 +70,8 @@ class usersController extends Controller
         $password = request("password");
         $country = request("country");
         $role = request("role");
-        $image = request("image")->store("images","public");
+        $image = request("image")->store("images", "public");
+        
         $user->name = $name;
         $user->email = $email;
         $user->phone = $phone;
@@ -79,7 +80,7 @@ class usersController extends Controller
         $user->role = $role;
         $user->profile_photo_path = $image;
         $user->save();
-        session()->flash('success','User Create Successfully');
+        session()->flash('success', 'User Create Successfully');
         return redirect("admin/users");
     }
 
@@ -102,8 +103,8 @@ class usersController extends Controller
      */
     public function edit(User $user)
     {
-$con = Countries::all();
-        return view('backEnd.users.userEdit', ['user' => $user,"country" => $con]);
+        $con = Countries::all();
+        return view('backEnd.users.userEdit', ['user' => $user, "country" => $con]);
     }
 
     /**
@@ -121,11 +122,11 @@ $con = Countries::all();
         $request->validate([
 
             'name' => "required |min:5| max:60",
-            'email'  =>  'required|email|unique:users,email,'.$user->id,
+            'email'  =>  'required|email|unique:users,email,' . $user->id,
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
-            'image'=> 'required|image',
+            'image' => 'image',
 
 
 
@@ -137,7 +138,7 @@ $con = Countries::all();
         $password = request("password");
         $country = request("country");
         $role = request("role");
-        $image = request("image")->store("images","public");
+        $image = request("image")->store("images", "public");
 
 
         $user->update([
@@ -147,10 +148,10 @@ $con = Countries::all();
             'country' => $country,
             'password' => Hash::make($password),
             'role' => $role,
-           'profile_photo_path' =>$image
+            'profile_photo_path' => $image
 
         ]);
-        session()->flash('success','User Update Successfully');
+        session()->flash('success', 'User Update Successfully');
 
         return redirect("/admin/users");
     }
@@ -163,6 +164,12 @@ $con = Countries::all();
      */
     public function destroy(User $user)
     {
+        //     ? dd("jjjo" ) :dd("notfound");
+        if($user->profile_photo_path!=""){
+        if (file_exists(public_path() . "/storage" . '/' . $user->profile_photo_path)) {
+
+            unlink(public_path() . "/storage" . '/' . $user->profile_photo_path);
+        }}
         $user->delete();
         return back();
     }

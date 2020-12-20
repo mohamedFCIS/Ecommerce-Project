@@ -22,8 +22,8 @@ use App\Http\Controllers\HomeController;
 
 
 
-
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 
 Route::get('product/{id}',[favouritesController::class,'show'])->name('user.fav');
