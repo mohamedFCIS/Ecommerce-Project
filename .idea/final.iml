@@ -134,6 +134,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/ia-str" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/countries" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pragmarx/coollection" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cartalyst/stripe-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cartalyst/stripe" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
