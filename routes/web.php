@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\backEnd\favouritesController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\backEnd\DashboardController;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\backEnd\usersController;
 use App\Http\Controllers\frontEnd\ordersController;
-use App\Http\Controllers\backEnd\cartController as BackEndCartController;
-use  Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\backEnd\ProductsController;
+use App\Http\Controllers\backEnd\DashboardController;
+use App\Http\Controllers\backEnd\CategoriesController;
 
 
 /*
@@ -72,7 +72,7 @@ Route::resource('admin/users', usersController::class);
 
 
 ////////////////////////////////////////////--Start Category--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\CategoriesController;
+use App\Http\Controllers\backEnd\favouritesController;
 
 Route::prefix('admin')->group(function (){
 //    Route::resources(['users' => usersController::class]);
@@ -89,7 +89,7 @@ Route::prefix('admin')->group(function (){
 ////////////////////////////////////////////--End Category--//////////////////////////////////////////
 
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\ProductsController;
+use App\Http\Controllers\backEnd\cartController as BackEndCartController;
 Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('product/create',[ProductsController::class,'create'] )->middleware('checkCategory');
     Route::post('product/create',[ProductsController::class,'store'] );
