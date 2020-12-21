@@ -237,17 +237,21 @@
                                                 <div class="rating-wrap">
                                                     <h3 class="head">Give a Review</h3>
                                                     <div class="wrap">
-                                                        <p class="star">
-                                                            <span>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                (98%)
-                                                            </span>
-                                                            <span>20 Reviews</span>
-                                                        </p>
+                                                    
+                                                      <p class="star">
+                                                           
+                                                        <span>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            (98%)
+                                                        </span>
+                                                        <span>{{$rate['5']}} Reviews</span>
+                                                    </p>
+                                                    
+                                                      
                                                         <p class="star">
                                                             <span>
                                                                 <i class="icon-star-full"></i>
@@ -257,7 +261,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (85%)
                                                             </span>
-                                                            <span>10 Reviews</span>
+                                                            <span>{{$rate['4']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -268,7 +272,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (70%)
                                                             </span>
-                                                            <span>5 Reviews</span>
+                                                            <span>{{$rate['3']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -279,7 +283,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (10%)
                                                             </span>
-                                                            <span>0 Reviews</span>
+                                                            <span>{{$rate['2']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -290,7 +294,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (0%)
                                                             </span>
-                                                            <span>0 Reviews</span>
+                                                            <span>{{$rate['1']}} Reviews</span>
                                                         </p>
                                                     </div>
                                                 </div>
