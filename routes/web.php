@@ -46,7 +46,7 @@ Route::get('/sortedDesc', [HomeController::class, 'sortedDesc'])->name('products
 
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('products');
+// Route::get('/home', [HomeController::class, 'index'])->name('products');
 
 Route::get('/aboutUs', function () {
     return view('frontEnd.aboutUs');

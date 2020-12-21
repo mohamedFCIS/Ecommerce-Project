@@ -50,10 +50,13 @@ class ProductDetailsController extends Controller
      */
     public function show(Product $product)
     {
-        
+        $rate = [];
+        for($i=1;$i<=5;$i++){
+            $rate[$i] = $product->reviews()->where('rate',$i)->count();
+        }
         $product = $product->load('reviews');
         
-        return view("frontEnd.productDetails",['product'=>$product]);
+        return view("frontEnd.productDetails",['product'=>$product,'rate'=>$rate]);
     }
 
     /**
