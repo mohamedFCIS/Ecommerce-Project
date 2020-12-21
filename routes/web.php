@@ -28,6 +28,11 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('products');
+Route::get('/filter', [HomeController::class, 'filters'])->name('products.filter');
+Route::get('/sorted', [HomeController::class, 'sorted'])->name('products.sorted');
+Route::get('/sortedDesc', [HomeController::class, 'sortedDesc'])->name('products.desc');
+
+
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('products');
@@ -45,29 +50,32 @@ Route::get('admin/contact', [ContactController::class, 'index']);
 Route::get('admin/contact/{id}', [ContactController::class, 'show']);
 Route::get('admin/contact/{id}/delete', [ContactController::class, 'destroy']);
 
+########################### Products And Favourites #############################
+
 
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');
-Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');
-Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');
+Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');           
+Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');          
+Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');      
+Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');  
 
-Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');
+
+
+############################## Review ######################################################
 
 
 
 // Route::get('revieww/{id}',[ReviewController::class,'index']);
-Route::get('review/{review}',[ReviewController::class,'edit'])->name('edit.review');
 
+Route::get('review/{review}',[ReviewController::class,'edit'])->name('edit.review');
 Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
 Route::put('review/{review}',[ReviewController::class,'update'])->name('update.review');
-
-
 Route::delete('review/{review}',[ReviewController::class,'destroy'])->name('delete.review');
 
-
+########################################################################################
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

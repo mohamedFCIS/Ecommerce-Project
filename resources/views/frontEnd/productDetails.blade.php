@@ -53,7 +53,7 @@
                             <span>{{ $product->price }}</span>
                             <span class="text-info">
                                 {{ $product->name }} have
-                                ({{ $product->reviews->avg('rate') ?? 0 }}
+                                ({{ round($product->reviews->avg('rate'),1,PHP_ROUND_HALF_UP) ?? 0 }}
                                 {{ Str::plural('Star', $product->reviews->avg('rate')) }} avg Rating)
                             </span>
                         </p>
