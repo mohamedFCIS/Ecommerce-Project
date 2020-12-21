@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use  Gloudemans\Shoppingcart\Facades\Cart;
 class cartController extends Controller
 {
-    
+
     public function index(){
         return view("frontEnd.cart.index");
     }
@@ -47,7 +47,7 @@ public function AddToCart($id){
   Cart::instance('default')->add($item->id,$item->name,1,$item->price)->associate('App\Models\Product');
   return redirect()->back()->with('msg','product has been added to your cart');
 }
- 
- 
- 
+
+
+
  }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ordersController extends Controller
@@ -14,7 +15,8 @@ class ordersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('backEnd.orders.index' , compact('orders'));
     }
 
     /**
@@ -46,7 +48,9 @@ class ordersController extends Controller
      */
     public function show($id)
     {
-        //
+        $orders = Order::find($id);
+        return view('backEnd.orders.show' , compact('orders'));
+
     }
 
     /**
@@ -80,6 +84,10 @@ class ordersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $orders = Order::find($id);
+        $orders->delete();
+        return back();
     }
+
+
 }

@@ -39,32 +39,26 @@
     @include('frontEnd.layouts.navbar')
 @endsection
 @section('content')
-
-    <div class="container">
-
-
-{{--        <form action="/charge" method="post" class="colorlib-form" id="payment-form">--}}
-{{--            @csrf--}}
-{{--            <input type="hidden" name="amount" value="100">--}}
-{{--            <div class="">--}}
-{{--                <label for="card-element">--}}
-{{--                    Credit or debit card--}}
-{{--                </label>--}}
-{{--                <div id="card-element">--}}
-{{--                    <!-- A Stripe Element will be inserted here. -->--}}
-{{--                </div>--}}
-
-{{--                <!-- Used to display form errors. -->--}}
-{{--                <div id="card-errors" role="alert"></div>--}}
-{{--            </div>--}}
-
-{{--            <button class="btn btn-primary mt-3">Submit Payment</button>--}}
-{{--        </form>--}}
-    </div>
-    <div class="container">
+    <div class="container mt-5">
+        @if(session()->has('success_message'))
+            <div class="spacer"></div>
+            <div class="alert alert-success">
+            {{session()->get('success_message')}}
+            </div>
+        @endif
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            <input type="hidden" name="amount" value="{{ Cart::total() }}">
         <div class="row">
             <div class="col-lg-8">
-                <form action="/charge" method="post" class="colorlib-form" id="payment-form">
+                <form action="{{route('checkout.store')}}" method="post" class="colorlib-form" id="payment-form">
                     @csrf
                     <h2>Billing Details</h2>
                     <div class="row">
@@ -73,13 +67,13 @@
                                 <label for="country">Select Country</label>
                                 <div class="form-field">
                                     <i class="icon icon-arrow-down3"></i>
-                                    <select name="people" id="people" class="form-control">
+                                    <select name="country" id="people" class="form-control">
                                         <option value="#">Select country</option>
-                                        <option value="#">Alaska</option>
-                                        <option value="#">China</option>
-                                        <option value="#">Japan</option>
-                                        <option value="#">Korea</option>
-                                        <option value="#">Philippines</option>
+                                        <option value="Alaska">Alaska</option>
+                                        <option value="China">China</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="Korea">Korea</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -87,69 +81,53 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" class="form-control" placeholder="Your firstname">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" value="{{old('name')}}" class="form-control" placeholder="Your Name">
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="companyname">Company Name</label>
-                                <input type="text" id="companyname" class="form-control" placeholder="Company Name">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" value="{{old('address')}}" class="form-control" placeholder="Enter Your Address">
                             </div>
+
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="fname">Address</label>
-                                <input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="address2" class="form-control" placeholder="Second Address">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="companyname">Town/City</label>
-                                <input type="text" id="towncity" class="form-control" placeholder="Town or City">
+                                <label for="city">Town/City</label>
+                                <input type="text" id="city" name="city" value="{{old('city')}}" class="form-control" placeholder="Town or City">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="stateprovince">State/Province</label>
-                                <input type="text" id="fname" class="form-control" placeholder="State Province">
+                                <label for="province">State/Province</label>
+                                <input type="text" id="province" name="province" value="{{old('province')}}" class="form-control" placeholder="State Province">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lname">Zip/Postal Code</label>
-                                <input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
+                                <label for="postalcode">Zip/Postal Code</label>
+                                <input type="text" id="postalcode" value="{{old('postalcode')}}" class="form-control" placeholder="Zip / Postal">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">E-mail Address</label>
-                                <input type="text" id="email" class="form-control" placeholder="State Province">
+                                <input type="text" id="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Enter Your Email">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="Phone">Phone Number</label>
-                                <input type="text" id="zippostalcode" class="form-control" placeholder="">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" id="phone" name="phone" value="{{old('phone')}}" class="form-control" placeholder="Your Phone Number">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                {{--            <input type="hidden" name="amount" value="100">--}}
                                 <div class="">
                                     <label for="card-element">
                                         Credit or debit card
@@ -162,7 +140,7 @@
                                     <div id="card-errors" role="alert"></div>
                                 </div>
 
-                                <button class="btn btn-primary mt-3">Submit Payment</button>
+                                <button type="submit" class="btn btn-primary mt-3">Submit Payment</button>
                             </div>
                         </div>
 
@@ -207,7 +185,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         window.onload = function () {
-            var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+            var stripe = Stripe('pk_test_51I09Z4Imekf4EWohqNnce1Xdj6re2VB4RJ3D2ZcnxV4Y6nYe9qX53JDDMUVRRK6gAh2BlYqYT6dpUaEiSpco3MDZ00jpdh9cVJ');
             var elements = stripe.elements();
 
             var style = {
@@ -225,7 +203,7 @@
                     iconColor: '#fa755a'
                 }
             };
-            var card = elements.create('card', {style: style});
+            var card = elements.create('card', {style: style });
             card.mount('#card-element');
 
             // Handle real-time validation errors from the card Element.
@@ -243,7 +221,15 @@
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
 
-                stripe.createToken(card).then(function (result) {
+            var option = {
+                name    : document.getElementById('name').value,
+                address_line1 : document.getElementById('address').value,
+                address_city    : document.getElementById('city').value,
+                address_state   : document.getElementById('province').value,
+                address_zip     : document.getElementById('postalcode').value
+            }
+
+                stripe.createToken(card , option).then(function (result) {
                     if (result.error) {
                         // Inform the user if there was an error.
                         var errorElement = document.getElementById('card-errors');
@@ -270,4 +256,8 @@
             }
         }
     </script>
+@endsection
+@section('footer')
+    @include('frontEnd.layouts.footer')
+
 @endsection

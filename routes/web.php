@@ -2,18 +2,29 @@
 
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\backEnd\usersController;
+use App\Http\Controllers\backEnd\ordersController;
+
+
 use App\Http\Controllers\HomeController;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Http\Controllers\backEnd\usersController;
+
 use App\Http\Controllers\backEnd\DashboardController;
+
+use App\Http\Controllers\frontEnd\checkoutController;
+use App\Http\Controllers\backEnd\cartController as BackEndCartController;
+
+
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\frontEnd\ordersController;
+
 use App\Http\Controllers\backEnd\ProductsController;
 use App\Http\Controllers\backEnd\CategoriesController;
 use App\Http\Controllers\backEnd\favouritesController;
 
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\ReviewController;
+
 
 
 /*
@@ -57,10 +68,10 @@ Route::get('admin/contact/{id}/delete', [ContactController::class, 'destroy']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');           
-Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');          
-Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');      
-Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');  
+Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');
+Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');
+Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');
+Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');
 
 
 
@@ -120,13 +131,13 @@ Route::prefix('admin')->group(function () {
 ////////////////////////////////////////////--End Category--//////////////////////////////////////////
 
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
-use App\Http\Controllers\backEnd\cartController as BackEndCartController;
+
 Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('product/create',[ProductsController::class,'create'] )->middleware('checkCategory');
     Route::post('product/create',[ProductsController::class,'store'] );
     Route::get('product',[ProductsController::class,'index'] );
     Route::get('product/{id}',[ProductsController::class,'show'] );
-    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );    
+    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );
     Route::post('product/{id}',[ProductsController::class,'update'] );
     Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
     Route::get('trashed',[ProductsController::class,'trashed'] );
@@ -145,7 +156,7 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('dashboard',[DashboardController::class,'index'] );
 
 });
-Route::resource('admin/sites',SitesController::class ); 
+Route::resource('admin/sites',SitesController::class );
 
 
 ////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
@@ -172,13 +183,22 @@ Route::get('/empty',function(){
   });
 Route::delete('/cart/remove/{product}',[BackEndCartController::class,'delete'])->name('cart.delete');
 Route::post('/cart/save/{product}',[BackEndCartController::class,'save'])->name('cart.save');
+
 Route::delete('/cart/removeSaveLater/{product}',[BackEndCartController::class,'RemovefromSaveLater'])->name('cart.removeSave');
 
 Route::post('/cart/add/{product}',[BackEndCartController::class,'AddToCart'])->name('addCart');
 
 //////////////
 
+//checkout
+Route::get('/checkout',[checkoutController::class,'index'])->name('checkout.index');
+Route::post('/checkout',[checkoutController::class,'store'])->name('checkout.store');
+
 //orders
-Route::get('/checkout',[ordersController::class,'index'])->name('checkout.index');
-Route::get('/charge',[ordersController::class,'charge'])->name('checkout.charge');
+Route::get('/admin/orders',[ordersController::class,'index'])->name('orders.index');
+Route::get('/admin/orders/{id}',[ordersController::class,'show'])->name('orders.show');
+Route::delete('/admin/orders/{id}',[ordersController::class,'destroy'])->name('orders.destroy');
+
+
+
 

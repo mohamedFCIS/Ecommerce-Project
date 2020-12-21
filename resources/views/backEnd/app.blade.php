@@ -66,7 +66,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            
+
 @foreach ($sites as $site)
 {{-- {{dd($sites->logo_image)}} --}}
 <a class="navbar-brand" href="#"><img src="{{ asset('storage/'.$site->logo_image)}}" alt="{{ $site->logo_name }}"class="w-100 object-cover"    > </a>
@@ -98,11 +98,16 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 <li class="{{is_active('trashed')}}">
                     <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
+
+                <li class="{{is_active('orders')}}">
+                    <a href="{{route('orders.index')}}"> <i class="menu-icon fa fa-trash"></i>Orders</a>
+
                 <li class="{{is_active('contact')}}">
                     <a href="/admin/contact"> <i class="menu-icon fa fa-envelope"></i>messages</a>
                 </li>
                  <li class="{{is_active('system')}}">
                     <a href="/admin/sites"> <i class="menu-icon fa fa-fix"></i>system</a>
+
                 </li>
 
             </ul>
@@ -136,7 +141,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                         </form>
                     </div>
 
-                 
+
                     <div class="dropdown for-notification">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -207,7 +212,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
 
                         <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa-cog"></i> Profile</a>
 
-                      
+
                         <form method="POST" action="{{ route('logout') }}">
 
                             @csrf
