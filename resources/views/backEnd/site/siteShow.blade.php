@@ -26,7 +26,7 @@
                             <th>{{ $index + 1 }}</th>
                             <td>{{ $site->logo_name }}</td>
                            
-                            <td><img src="{{ asset('storage/'. $site->logo_image)}}" alt="{{ $site->logo_image }}" width="50px" height="50px"> </td>
+                            <td><img src="{{  $site->logo_image}}" alt="{{ $site->logo_image }}" width="50px" height="50px"> </td>
 
                             <td><a href="{{ route('sites.edit', $site) }}"><i
                                         class='fa fa-edit  text-center text-primary '></i> </a></td>

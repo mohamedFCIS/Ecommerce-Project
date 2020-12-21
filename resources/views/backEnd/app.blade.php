@@ -69,7 +69,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
 
 @foreach ($sites as $site)
 {{-- {{dd($sites->logo_image)}} --}}
-<a class="navbar-brand" href="#"><img src="{{ asset('storage/'.$site->logo_image)}}" alt="{{ $site->logo_name }}"class="w-100 object-cover"    > </a>
+<a class="navbar-brand" href="#"><img src="{{ $site->logo_image}}" alt="{{ $site->logo_name }}"class="w-100 object-cover"    > </a>
     @if ($site->logo_image !="")
         @break
     @endif

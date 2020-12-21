@@ -113,7 +113,7 @@
                         @error('image')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <img src="{{ asset('storage/'. $user->profile_photo_path )}}" alt="{{ $user->rofile_photo_path }}" width="100px" height="100px" id="img">
+                        <img src="{{  $user->profile_photo_path }}" alt="{{ $user->rofile_photo_path }}" width="100px" height="100px" id="img">
 
                     </div>
                 </div>

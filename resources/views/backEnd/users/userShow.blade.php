@@ -40,7 +40,7 @@
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->country }}</td>
                             <td>{{ $user->role }}</td>
-                            <td><img src="{{ asset('storage/'. $user->profile_photo_path )}}" alt="{{ $user->profile_photo_path }}" width="50px" height="50px"> </td>
+                            <td><img src="{{ $user->profile_photo_path }}" alt="{{ $user->profile_photo_path }}" width="50px" height="50px"> </td>
 
                             <td><a href="{{ route('users.edit', $user,$country) }}"><i
                                         class='fa fa-edit  text-center text-primary '></i> </a></td>

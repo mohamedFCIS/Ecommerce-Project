@@ -7,7 +7,7 @@
                     @foreach ($sites as $site)
                         @if ($site->logo_image != '')
                             <div id="colorlib-logo"><a href="{{ url('/home') }}"><img
-                                        src="{{ asset('storage/' . $site->logo_image) }}" alt="{{ $site->logo_name }}"
+                                        src="{{ $site->logo_image }}" alt="{{ $site->logo_name }}"
                                         class=" object-cover" width="150" height="80">
                                 </a>
                             </div>
@@ -96,7 +96,7 @@
                                                 <p>{{ Auth::user()->name }}</p>
                                             @else
                                                 <img class="rounded-circle float-md-right" width="50" height="50"
-                                                    src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                                    src="{{  Auth::user()->profile_photo_path }}"
                                                     alt="{{ Auth::user()->name }}" />
 
 
