@@ -3,12 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-7 col-md-9">
-                    <div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+                    <div id="colorlib-logo"><a href="{{url('/home')}}"><img src="{{asset('storage/' . $site[0]['logo_image'] )}}" alt="{{$site[0]['logo_name'] }}" class=" object-cover" width="150" height="80" >
+                    </a></div>
+
                 </div>
                 <div class="col-sm-5 col-md-3">
-                    <form action="#" class="search-wrap">
+                    <form action="{{route('search')}}" class="search-wrap">
                         <div class="form-group">
-                            <input type="search" class="form-control search" placeholder="Search">
+                            <input type="search" class="form-control search " placeholder="Search" name="search">
                             <button class="btn btn-primary submit-search text-center" type="submit"><i
                                     class="icon-search"></i></button>
                         </div>
@@ -49,7 +51,7 @@
                                             class="text-sm text-gray-700 underline " style="display: inline">Dashboard</a>
                                     @endif
                                 @endif
-                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"
+                                <div class="hidden  px-6 py-4 sm:block"
                                     style="padding-top: 0.1rem !important; display:inline" >
                                     @auth
 
@@ -72,10 +74,9 @@
                                             <div class="user-menu dropdown-menu">
 
 
-                                                <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
-                                                        class="count">13</span></a>
+                                               
 
-                                                <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+                                                <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa-cog"></i> Profile</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <a class="nav-link" href="#" onclick="this.parentNode.submit()"><i

@@ -89,18 +89,25 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::post('product/create',[ProductsController::class,'store'] );
     Route::get('product',[ProductsController::class,'index'] );
     Route::get('product/{id}',[ProductsController::class,'show'] );
-    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );
+    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );    
     Route::post('product/{id}',[ProductsController::class,'update'] );
     Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
     Route::get('trashed',[ProductsController::class,'trashed'] );
     Route::get('trashed/{id}',[ProductsController::class,'restore'] );
+    Route::get('search',[ProductsController::class,'search'] )->name("search");
 });
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
 
 ////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
 ////////////////////////////////////////////--Start dashboard--//////////////////////////////////////////
 use App\Http\Controllers\backEnd\DashboardController;
+use App\Http\Controllers\backEnd\SitesController;
+
 Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::get('dashboard',[DashboardController::class,'index'] );
+
 });
+Route::resource('admin/sites',SitesController::class ); 
+
+
 ////////////////////////////////////////////--End dashboard--//////////////////////////////////////////

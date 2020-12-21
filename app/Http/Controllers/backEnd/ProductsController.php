@@ -17,8 +17,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all(); return view('backEnd.product.index')->with('products', $products);
-       
+        $products = Product::all();
+        return view('backEnd.product.index')->with('products', $products);
     }
 
     /**
@@ -161,8 +161,15 @@ class ProductsController extends Controller
     }
     public function restore($id)
     {
-        Product::withTrashed()->where('id',$id)->restore();
+        Product::withTrashed()->where('id', $id)->restore();
         session()->flash('success', 'product restored successfully');
-            return redirect('/admin/trashed');
+        return redirect('/admin/trashed');
+    }
+    public function search(Request $request)
+    {
+
+        $data = Product::where('name', 'like', '%'.$request['search'].'%')->get();
+        return view('frontEnd.product')->with('products', $data);
+    
     }
 }
