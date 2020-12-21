@@ -1,6 +1,7 @@
 <nav class="colorlib-nav" role="navigation">
     <div class="top-menu">
         <div class="container">
+
             <div class="row ">
                 <div class="col-sm-7 col-md-9">
                     @foreach ($sites as $site)
@@ -23,10 +24,12 @@
                         </div>
                     </form>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-sm-12 text-left menu-1">
                     <ul>
+
                         <li><a href="/home">Home</a></li>
                         <li class="has-dropdown">
 
@@ -36,6 +39,7 @@
                                 <li><a href="product-detail.html">Product Detail</a></li>
                                 @auth
                                     <li> <a href="{{ route('user.fav') }}">User Favourits</a></li>
+
                                 @endauth
 
                                 <li><a href="cart.html">Shopping Cart</a></li>
@@ -44,11 +48,12 @@
                                 <li><a href="add-to-wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
+
                         <li><a href="/aboutUs">About</a></li>
                         <li><a href="/contact">Contact</a></li>
-                        
+
                         <li class="has-dropdown">
-                        
+
                             <a href="#">Filters</a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('products.sorted') }}">From Low To High</a></li>
@@ -70,10 +75,12 @@
                                 <li><a href="add-to-wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
+
                         <li class="cart">
                             @if (Route::has('login'))
                                 @if (Auth::check())
                                     @if (Auth::user()->role != 'user')
+
                                         <a href="{{ url('/admin/home') }}" class="text-sm text-gray-700 underline "
                                             style="display: inline">Dashboard</a>
                                     @endif
@@ -81,7 +88,7 @@
                                 <div class="hidden  top-0 right-0 px-6 py-4 sm:block"
                                     style="padding-top: 0.1rem !important; display:inline">
                                     @auth
-    
+
                                     <div class="user-area dropdown float-right">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -91,18 +98,18 @@
                                                 <img class="rounded-circle float-md-right" width="50" height="50"
                                                     src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
                                                     alt="{{ Auth::user()->name }}" />
-                    
-                    
+
+
                                             @endif
                                         </a>
-    
-                                       
-    
+
+
+
                                         <div class="user-menu dropdown-menu">
-    
-    
-    
-    
+
+
+
+
                                             <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa-cog"></i>
                                                 Profile</a>
                                             <form method="POST" action="{{ route('logout') }}">
@@ -110,14 +117,14 @@
                                                 <a class="nav-link" href="#" onclick="this.parentNode.submit()"><i
                                                         class="fa fa-power-off"></i>
                                                     Logout</a>
-    
+
                                             </form>
-    
+
                                         </div>
                                     </div>
                                 @else
                                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-    
+
                                     @if (Route::has('register'))
                                         <a href="{{ route('register') }}"
                                             class="ml-4 text-sm text-gray-700 underline">Register</a>
@@ -125,7 +132,7 @@
                                 @endauth
                     </div>
                     @endif
-    
+
                     </li>
                     <li class="cart"><a href="{{ route('cart') }}"><i class="icon-shopping-cart"></i> Cart
                             @if (Cart::instance('default')->count() > 0)
@@ -133,14 +140,17 @@
                             @endif
                         </a>
                     </li>
-    
-    
-    
+
+
+
+
                     </ul>
                 </div>
             </div>
         </div>
+
         </div>
+
     <div class="sale">
         <div class="container">
             <div class="row">
