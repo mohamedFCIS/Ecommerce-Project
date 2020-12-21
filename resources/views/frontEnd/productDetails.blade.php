@@ -173,7 +173,7 @@
                                                         <div class="desc bg-gray-200 m-3 p-3 rounded-md">
                                                             <h4>
                                                                 <span class="text-left">{{ $review->user['name'] }}</span>
-                                                                <span class="text-left"></span>
+                                                                
                                                                 <span
                                                                     class="text-right">{{ $review->created_at->diffForHumans() }}</span>
                                                             </h4>
@@ -237,17 +237,21 @@
                                                 <div class="rating-wrap">
                                                     <h3 class="head">Give a Review</h3>
                                                     <div class="wrap">
-                                                        <p class="star">
-                                                            <span>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                <i class="icon-star-full"></i>
-                                                                (98%)
-                                                            </span>
-                                                            <span>20 Reviews</span>
-                                                        </p>
+                                                    
+                                                      <p class="star">
+                                                           
+                                                        <span>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            <i class="icon-star-full"></i>
+                                                            (98%)
+                                                        </span>
+                                                        <span>{{$rate['5']}} Reviews</span>
+                                                    </p>
+                                                    
+                                                      
                                                         <p class="star">
                                                             <span>
                                                                 <i class="icon-star-full"></i>
@@ -257,7 +261,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (85%)
                                                             </span>
-                                                            <span>10 Reviews</span>
+                                                            <span>{{$rate['4']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -268,7 +272,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (70%)
                                                             </span>
-                                                            <span>5 Reviews</span>
+                                                            <span>{{$rate['3']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -279,7 +283,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (10%)
                                                             </span>
-                                                            <span>0 Reviews</span>
+                                                            <span>{{$rate['2']}} Reviews</span>
                                                         </p>
                                                         <p class="star">
                                                             <span>
@@ -290,7 +294,7 @@
                                                                 <i class="icon-star-empty"></i>
                                                                 (0%)
                                                             </span>
-                                                            <span>0 Reviews</span>
+                                                            <span>{{$rate['1']}} Reviews</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -313,49 +317,35 @@
 
     <script>
         let arr = [1, 2, 3, 4, 5];
-
         function handleRating(e) {
             console.log(e.target.value);
         }
-
     </script>
 
 
 @endsection
 <script>
     $(document).ready(function() {
-
         var quantitiy = 0;
         $('.quantity-right-plus').click(function(e) {
-
             // Stop acting like a button
             e.preventDefault();
             // Get the field name
             var quantity = parseInt($('#quantity').val());
-
             // If is not undefined
-
             $('#quantity').val(quantity + 1);
-
-
             // Increment
-
         });
-
         $('.quantity-left-minus').click(function(e) {
             // Stop acting like a button
             e.preventDefault();
             // Get the field name
             var quantity = parseInt($('#quantity').val());
-
             // If is not undefined
-
             // Increment
             if (quantity > 0) {
                 $('#quantity').val(quantity - 1);
             }
         });
-
     });
-
 </script>
