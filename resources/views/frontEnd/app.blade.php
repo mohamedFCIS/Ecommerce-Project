@@ -36,8 +36,13 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="{{url('frontEnd/css/style.css')}}">
 
+
+    <link rel="stylesheet" href="{{url('frontEnd/css/rating.css')}}">
+
+
+    <link rel="stylesheet" href="{{url('frontEnd/css/style.css')}}">
+    
 </head>
 <body>
 
@@ -73,8 +78,13 @@
 <!-- Owl carousel -->
 <script src="{{url('frontEnd/js/owl.carousel.min.js')}}"></script>
 <!-- Magnific Popup -->
+
+
+<script src="{{asset('frontEnd/js/magnific-popup-options.js')}}"></script>
+
 <script src="{{url('frontEnd/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="frontEnd/js/magnific-popup-options.js"></script>
+
 <!-- Date Picker -->
 <script src="{{url('frontEnd/js/bootstrap-datepicker.js')}}"></script>
 <!-- Stellar Parallax -->

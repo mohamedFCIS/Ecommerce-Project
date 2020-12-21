@@ -5,17 +5,18 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="{{ url('/home') }}">
+                        @foreach ($sites as $site)
+                            
+                        <img src="{{asset('storage/' . $site->logo_image )}}" alt="{{$site->logo_name }}" class=" object-cover" width="80" height="80" >
+                        @if ($site->logo_image != '')
+                                    @break
+                                @endif
+                    @endforeach 
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>
+             
             </div>
 
             <!-- Settings Dropdown -->

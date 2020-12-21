@@ -107,7 +107,7 @@
                 <div class="row form-group">
                     <div class="col col-sm-5"><label for="input-large" class=" form-control-label">Image</label>
                     </div>
-                    <div class="col col-sm-6"><input type="file" name="image" class=" form-control"
+                <div class="col col-sm-6"><input type="file" name="image" class=" form-control" value="{{$user->rofile_photo_path}}"
                             id="imgUpload">
 
                         @error('image')

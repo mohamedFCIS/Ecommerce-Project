@@ -66,9 +66,16 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><img src="{{asset('storage/backEnd_images/logo.png')}}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{asset('storage/backEnd_images/logo2.png')}}"
-                                                          alt="Logo"></a>
+
+@foreach ($sites as $site)
+{{-- {{dd($sites->logo_image)}} --}}
+<a class="navbar-brand" href="#"><img src="{{ asset('storage/'.$site->logo_image)}}" alt="{{ $site->logo_name }}"class="w-100 object-cover"    > </a>
+    @if ($site->logo_image !="")
+        @break
+    @endif
+@endforeach
+            <a class="navbar-brand hidden" href="#"><img src="{{asset('storage/backEnd_images/logo2.png')}}" alt="Logo"></a>
+
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -91,8 +98,16 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 <li class="{{is_active('trashed')}}">
                     <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
+
                 <li class="{{is_active('orders')}}">
                     <a href="{{route('orders.index')}}"> <i class="menu-icon fa fa-trash"></i>Orders</a>
+
+                <li class="{{is_active('contact')}}">
+                    <a href="/admin/contact"> <i class="menu-icon fa fa-envelope"></i>messages</a>
+                </li>
+                 <li class="{{is_active('system')}}">
+                    <a href="/admin/sites"> <i class="menu-icon fa fa-fix"></i>system</a>
+
                 </li>
 
             </ul>
@@ -125,6 +140,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                             <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
+
 
                     <div class="dropdown for-notification">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
@@ -183,8 +199,8 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                        aria-expanded="false">
                         {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" />
+                    {{-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" /> --}}
 
                         {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
 
@@ -194,11 +210,11 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
-                                class="count">13</span></a>
+                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa-cog"></i> Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+
                         <form method="POST" action="{{ route('logout') }}">
+
                             @csrf
 
                             <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i> Logout</a>
