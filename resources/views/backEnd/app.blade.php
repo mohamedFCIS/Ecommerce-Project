@@ -66,9 +66,16 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><img src="{{asset('storage/backEnd_images/logo.png')}}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{asset('storage/backEnd_images/logo2.png')}}"
-                                                          alt="Logo"></a>
+            
+@foreach ($sites as $site)
+{{-- {{dd($sites->logo_image)}} --}}
+<a class="navbar-brand" href="#"><img src="{{ asset('storage/'.$site->logo_image)}}" alt="{{ $site->logo_name }}"class="w-100 object-cover"    > </a>
+    @if ($site->logo_image !="")
+        @break
+    @endif
+@endforeach
+            <a class="navbar-brand hidden" href="#"><img src="{{asset('storage/backEnd_images/logo2.png')}}" alt="Logo"></a>
+
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -93,6 +100,9 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 </li>
                 <li class="{{is_active('contact')}}">
                     <a href="/admin/contact"> <i class="menu-icon fa fa-envelope"></i>messages</a>
+                </li>
+                 <li class="{{is_active('system')}}">
+                    <a href="/admin/sites"> <i class="menu-icon fa fa-fix"></i>system</a>
                 </li>
 
             </ul>
@@ -126,6 +136,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                         </form>
                     </div>
 
+                 
                     <div class="dropdown for-notification">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -194,11 +205,11 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
-                                class="count">13</span></a>
+                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa-cog"></i> Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+                      
                         <form method="POST" action="{{ route('logout') }}">
+
                             @csrf
 
                             <a href="#" onclick="this.parentNode.submit()"><i class="fa fa-power-off"></i> Logout</a>

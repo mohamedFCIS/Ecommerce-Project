@@ -52,13 +52,23 @@ Route::get('admin/contact/{id}/delete', [ContactController::class, 'destroy']);
 
 ########################### Products And Favourites #############################
 
+
+
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+
 Route::get('favourit', [favouritesController::class, 'index'])->name('user.fav');           
 Route::Post('favourit/{id}', [favouritesController::class, 'store'])->name('fav.add');          
 Route::delete('product/{id}', [favouritesController::class, 'destroy'])->name('fav.delete');      
 Route::get('product/{product}',[ProductDetailsController::class,'show'])->name('product.details');  
 
 
+
 ############################## Review ######################################################
+
+
+
+// Route::get('revieww/{id}',[ReviewController::class,'index']);
 
 Route::get('review/{review}',[ReviewController::class,'edit'])->name('edit.review');
 Route::post('review/{id}',[ReviewController::class,'store'])->name('add.review');
@@ -116,13 +126,29 @@ Route::namespace('backEnd')->prefix('admin')->group(function (){
     Route::post('product/create',[ProductsController::class,'store'] );
     Route::get('product',[ProductsController::class,'index'] );
     Route::get('product/{id}',[ProductsController::class,'show'] );
-    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );
+    Route::get('product/{id}/edit',[ProductsController::class,'edit'] );    
     Route::post('product/{id}',[ProductsController::class,'update'] );
     Route::get('product/{id}/delete',[ProductsController::class,'destroy'] );
     Route::get('trashed',[ProductsController::class,'trashed'] );
     Route::get('trashed/{id}',[ProductsController::class,'restore'] );
+    Route::get('search',[ProductsController::class,'search'] )->name("search");
 });
 ////////////////////////////////////////////--Start product--//////////////////////////////////////////
+
+
+////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
+////////////////////////////////////////////--Start dashboard--//////////////////////////////////////////
+
+use App\Http\Controllers\backEnd\SitesController;
+
+Route::namespace('backEnd')->prefix('admin')->group(function (){
+    Route::get('dashboard',[DashboardController::class,'index'] );
+
+});
+Route::resource('admin/sites',SitesController::class ); 
+
+
+////////////////////////////////////////////--End dashboard--//////////////////////////////////////////
 
 
 
@@ -155,3 +181,4 @@ Route::post('/cart/add/{product}',[BackEndCartController::class,'AddToCart'])->n
 //orders
 Route::get('/checkout',[ordersController::class,'index'])->name('checkout.index');
 Route::get('/charge',[ordersController::class,'charge'])->name('checkout.charge');
+
