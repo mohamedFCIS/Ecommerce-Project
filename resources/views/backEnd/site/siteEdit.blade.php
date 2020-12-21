@@ -41,7 +41,7 @@
                         @error('image')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <img src="{{ asset('storage/'. $site->logo_image )}}" alt="{{ $site->image }}" width="100px" height="100px" id="img">
+                        <img src="{{  $site->logo_image }}" alt="{{ $site->image }}" width="100px" height="100px" id="img">
 
                     </div>
                 </div>

@@ -87,7 +87,7 @@
 
                                 <td>{{$product->category->name}}</td>
 
-                                <td>  <img src="{{ asset('storage/'. $product->image) }}" alt=""
+                                <td>  <img src="{{  $product->image }}" alt=""
                                            width="30px" height="30px"></td>
                             </tr>
                         @endforeach
