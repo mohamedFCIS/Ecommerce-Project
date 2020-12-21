@@ -5,10 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        
-                        <img src="{{asset('storage/' . $site[0]['logo_image'] )}}" alt="{{$site[0]['logo_name'] }}" class=" object-cover" width="80" height="80" >
-                        
+                    <a href="{{ url('/home') }}">
+                        @foreach ($sites as $site)
+                            
+                        <img src="{{asset('storage/' . $site->logo_image )}}" alt="{{$site->logo_name }}" class=" object-cover" width="80" height="80" >
+                        @if ($site->logo_image != '')
+                                    @break
+                                @endif
+                    @endforeach 
                     </a>
                 </div>
 

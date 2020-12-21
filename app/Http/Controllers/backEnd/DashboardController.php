@@ -10,12 +10,11 @@ use App\Models\Product;
 
 class DashboardController extends Controller
 {
+
     public function index()
     {
-        return view('backEnd.dashboard.index',[
-            'products_count'=> Product::all()->count(),
-            'users_count'=> User::all()->count(),
-            'categories_count'=> Category::all()->count(),
-        ]);
+        $products = Product::orderby('id', 'desc')->paginate(10);
+        return view('backEnd.layouts.index', compact('products'));
     }
 }
+

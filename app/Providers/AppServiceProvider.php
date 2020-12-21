@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $site = Site::all();
-        View::share('site', $site);
+        View::share('sites', $site);
         // View::share('site', 'value');
         Schema::defaultStringLength(191);
 

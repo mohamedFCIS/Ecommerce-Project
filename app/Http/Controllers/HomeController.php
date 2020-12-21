@@ -11,8 +11,11 @@ use Illuminate\Http\Request;
 class homeController extends Controller
 {
     public function index(){
-        $products = Product::all();
-        
-        return view('frontEnd.product',['products'=> $products]);    }
+
+
+
+        $products = Product::all()->load('reviews');
+        return view('frontEnd.product')->with('products', $products);    }
+
    
 }

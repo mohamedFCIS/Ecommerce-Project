@@ -1,14 +1,13 @@
 <?php
 
+namespace App\Http\Controllers;
 
-namespace App\Http\Controllers\backEnd;
-
-use App\Http\Controllers\Controller;
-
-use App\Models\Site;
+use App\Models\User;
+use App\Models\Review;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class SitesController extends Controller
+class ProductDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class SitesController extends Controller
      */
     public function index()
     {
-        $site = Site::all();
-        // dd($site[0]['logo_image']);
-        return view("backEnd.site.siteShow");
+        //
     }
 
     /**
@@ -29,6 +26,7 @@ class SitesController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -39,7 +37,9 @@ class SitesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        
+       
     }
 
     /**
@@ -48,9 +48,12 @@ class SitesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        
+        $product = $product->load('reviews');
+        
+        return view("frontEnd.productDetails",['product'=>$product]);
     }
 
     /**
@@ -61,9 +64,7 @@ class SitesController extends Controller
      */
     public function edit($id)
     {
-        $site = Site::find($id);
-        // dd($site->logo_name);
-        return view('backEnd.site.siteEdit', ['site' => $site]);
+        //
     }
 
     /**
@@ -72,33 +73,10 @@ class SitesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'logo_name' => 'required|min:5|max:50',
-            'image' => 'image'
-        ]);
-        $logo_name = $request['logo_name'];
-        if($request['image']!="")
-        {
-            $logo_image = $request['image']->store("images", "public");
-
-        }
-        else{
-             $logo_image = $request['image'];
-        }
-       
-
-        $site = Site::find($id);
-        $site->update([
-            'logo_name'=>$logo_name,
-            'logo_image'=>$logo_image
-        ]);
-
-        session()->flash('success', 'Info Change Successfully');
-
-        return redirect("/admin/sites");
+        //
     }
 
     /**

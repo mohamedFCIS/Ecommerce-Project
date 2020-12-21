@@ -58,7 +58,7 @@ class usersController extends Controller
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'country' => 'required',
             'password' => 'required|confirmed|min:6',
-            'image' => 'required|image',
+            'image' => 'image',
 
 
         ]);
@@ -70,7 +70,17 @@ class usersController extends Controller
         $password = request("password");
         $country = request("country");
         $role = request("role");
-        $image = request("image")->store("images", "public");
+        if($request['image']!="")
+        {
+            $image = $request['image']->store("images", "public");
+
+        }
+        else {
+            $image = $request['image'];
+        }
+        
+       
+       
         
         $user->name = $name;
         $user->email = $email;
@@ -138,7 +148,16 @@ class usersController extends Controller
         $password = request("password");
         $country = request("country");
         $role = request("role");
-        $image = request("image")->store("images", "public");
+        if($request['image']!="")
+        {
+            $image = $request['image']->store("images", "public");
+
+        }
+        else{
+             $image = $request['image'];
+        }
+       
+       
 
 
         $user->update([

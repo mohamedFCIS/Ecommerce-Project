@@ -3,16 +3,30 @@
 namespace App\Models;
 
 use App\Models\Favourite;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
-class Product extends Model
+
+class Product extends Model implements Buyable
 {
     use SoftDeletes;
     use HasFactory;
     protected $guarded = [];
+    public function getBuyableIdentifier($options = null) {
+        return $this->id;
+    }
+
+    public function getBuyableDescription($options = null) {
+        return $this->details;
+    }
+
+    public function getBuyablePrice($options = null) {
+        return $this->price;
+    }
     public function category(){
         return $this->belongsTo(Category::class , 'cat_id' );
 
@@ -43,18 +57,21 @@ class Product extends Model
         return $this->hasManyThrough(Favourite::class,User::class);
     }
 
-// $item->img
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
-//     public function getImgAttribute(){
 
-//         $path = public_path('images');
 
-//         if(File::exists($path)){
+    public function getImageAttribute()
+    {     
+        if( Storage::disk('local')->exists('public/'.$this->attributes['image'])){
+            return asset('storage/'.$this->attributes['image']);
+        }
+        return $this->attributes['image'];
 
-//             return $path . $this->iamge;
-//         }
+    }
 
-//         return $path . 'not_found.png';
 
-//     }
 }
