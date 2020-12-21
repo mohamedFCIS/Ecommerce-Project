@@ -36,7 +36,7 @@
 
 
 
-    
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -91,6 +91,9 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 <li class="{{is_active('trashed')}}">
                     <a href="/admin/trashed"> <i class="menu-icon fa fa-trash"></i>Trash Product</a>
                 </li>
+                <li class="{{is_active('orders')}}">
+                    <a href="{{route('orders.index')}}"> <i class="menu-icon fa fa-trash"></i>Orders</a>
+                </li>
 
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -109,7 +112,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
         <div class="header-menu">
 
             <div class="col-sm-7">
-                
+
                 <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                 <div class="header-left">
                     <a href="{{ url('/home') }}"
@@ -153,7 +156,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                             <i class="ti-email"></i>
                             <span class="count bg-primary">9</span>
                         </button>
-                        
+
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media bg-flat-color-1" href="#">
@@ -167,13 +170,13 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                             </a>
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-5">
-                
+
                 <div class="user-area dropdown float-right">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"

@@ -60,7 +60,7 @@ Shopping Cart
                         </td>
 
                         <td>
-                            <select name="" id="" class="form-control" style="width: 4.7em">
+                            <select name="" id="" class="form-control quantity" style="width: 4.7em">
                                 <option value="">1</option>
 
                             </select>
@@ -153,6 +153,7 @@ Shopping Cart
 </html>
 
 @endsection
+
 
 @section('footer')
 @include('frontEnd.layouts.footer')
