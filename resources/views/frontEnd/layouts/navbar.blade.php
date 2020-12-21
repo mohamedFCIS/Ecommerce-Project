@@ -34,6 +34,7 @@
                                 <li><a href="add-to-wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
+                      
 
 
 
@@ -41,6 +42,27 @@
 
                         <li><a href="/aboutUs">About</a></li>
                         <li><a href="/contact">Contact</a></li>
+                        <li class="has-dropdown">
+
+                            <a href="{{route('products')}}">Filters</a>
+                            <ul class="dropdown">
+                                <li><a href="{{route('products.sorted')}}">From Low To High</a></li>
+                                @auth
+                                <li> <a href="{{route('products.desc')}}">From High To Low</a></li>
+                                @endauth
+
+                                <li class="bg-gray-200 rounded-md">
+                                    <form action="{{route('products.filter')}}" method="GET">
+                                        <input class="w-20 rounded-md bg-white p-2 m-2 " type="number" name="max" id="" placeholder="Max">
+                                        <input class="w-20 rounded-md bg-white p-2 m-2" type="number" name="min" id="" placeholder="Min"><br>
+                                        <button class="btn bg-blue-300 text-white m-2" type="submit">Filter</button>
+                                    </form>
+                                </li>
+                                <li><a href="{{route('checkout.index')}}">Checkout</a></li>
+                                <li><a href="order-complete.html">Order Complete</a></li>
+                                <li><a href="add-to-wishlist.html">Wishlist</a></li>
+                            </ul>
+                        </li>
                         <li class="cart">
                             @if (Route::has('login'))
                                 @if (Auth::check())
