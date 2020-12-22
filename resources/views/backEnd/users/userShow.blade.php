@@ -3,7 +3,7 @@
     Users
     @endsection
 @section('header')
-    <h1 class="text-primary"> Users Information</h1>
+    <h1> Users Information</h1>
 @endsection
 @section('content')
 

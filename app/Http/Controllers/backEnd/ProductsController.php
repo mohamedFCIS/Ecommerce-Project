@@ -17,8 +17,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('backEnd.product.index')->with('products', $products);
+        $products = Product::orderby('id', 'desc')->paginate(10);
+        return view('backEnd.product.index' , compact('products'));
     }
 
     /**
@@ -170,6 +170,6 @@ class ProductsController extends Controller
 
         $data = Product::where('name', 'like', '%'.$request['search'].'%')->get();
         return view('frontEnd.product')->with('products', $data);
-    
+
     }
 }

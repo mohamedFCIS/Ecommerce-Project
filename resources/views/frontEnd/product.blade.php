@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <h1 style="text-align: center">welcome to products </h1>
+    <h1 style="text-align: center">Latest Products </h1>
     @if(session()->has('msg'))
    <div class="alert alert-success">{{session()->get('msg')}}</div>
   @endif
@@ -27,39 +27,39 @@
                         src="{{ $product->image }}"
 
                             alt="{{ $product->image }}">
-                 
+
                       @auth
                         <div class="d-flex justify-content-end">
                         @if (!$product->favouritBy(auth()->user()))
                         <form action="{{route('fav.add',$product['id'])}}" method="POST">
                             @csrf
-                                <button  type="submit"> 
+                                <button  type="submit">
                                  <h3>
                                     <i id="white" class="far fa-heart"></i>
                                      </h3>
                                 </button>
                             </form>
-                    
+
                             {{-- <button   type="button"  onclick="addToWishList({{$product->id}})">
                                 <i id="white" class="far fa-heart"></i>
-                            
+
                             </button> --}}
-                         
-                        @else                          
+
+                        @else
                         <form action="{{route('fav.delete',$product['id'])}}" method="POST">
                             @csrf
                             @method('delete')
                                 <button  type="submit">
-                                   
+
                                     <h3>
                                         <i class="fa fa-heart "></i>
                                     </h3>
                                 </button>
                             </form>
-                        @endif   
+                        @endif
                         </div>
-                        @endauth    
-                   
+                        @endauth
+
                         <div class="card-body">
                             <h4>
                                 <a class="card-link text-primary" href="{{route('product.details',$product->id)}}">{{$product->name}}</a>
@@ -70,7 +70,7 @@
                             </p>
                             <p class="card-text">
                                 {{ $product->reviews->count() }} {{Str::plural('Review',$product->reviews->count())}}
-                                
+
                             </p>
 
 
@@ -80,12 +80,12 @@
                                 </div>
                                 <form action="{{ route('cart')}}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                   
+
                                     <input type="hidden" name="id" value="{{ $product->id }}">
                                     <input type="hidden" name="name" value="{{ $product->name }}">
                                     <input type="hidden" name="price" value="{{ $product->price }}">
-                                  
-                                <input type="submit"  class="btn btn-danger mt-3" value="Add to Cart"><i class="fas fa-shopping-cart"></i> 
+
+                                <input type="submit"  class="btn btn-danger mt-3" value="Add to Cart"><i class="fas fa-shopping-cart"></i>
                                 </form>
                                 </div>
                         </div>
@@ -100,16 +100,16 @@
 @section('script')
 
     {{-- <script>
-      function addToWishList(id) { 
-           
-       
+      function addToWishList(id) {
+
+
             $.ajax({
             type: "Post",
             url: "{{route('fav.add',$product['id'])}}",
             data: {
                 '_token' : "{{csrf_token()}}",
               },
-           
+
             success: function (response) {
                 alert(response.message);
             }
