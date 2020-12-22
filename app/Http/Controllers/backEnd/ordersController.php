@@ -16,7 +16,7 @@ class ordersController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('backEnd.orders.index' , compact('orders'));
+        return view('backEnd.orders.index', compact('orders'));
     }
 
     /**
@@ -49,8 +49,7 @@ class ordersController extends Controller
     public function show($id)
     {
         $orders = Order::find($id);
-        return view('backEnd.orders.show' , compact('orders'));
-
+        return view('backEnd.orders.show', compact('orders'));
     }
 
     /**
@@ -88,6 +87,4 @@ class ordersController extends Controller
         $orders->delete();
         return back();
     }
-
-
 }

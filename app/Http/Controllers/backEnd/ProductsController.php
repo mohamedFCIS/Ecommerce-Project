@@ -127,9 +127,7 @@ class ProductsController extends Controller
             $product->image = $request->productImage->store('images', 'public');;
         }
         $product->save();
-
         session()->flash('success', 'product updated successfully');
-
         return redirect('/admin/product');
     }
 
@@ -168,8 +166,7 @@ class ProductsController extends Controller
     public function search(Request $request)
     {
 
-        $data = Product::where('name', 'like', '%'.$request['search'].'%')->get();
+        $data = Product::where('name', 'like', '%' . $request['search'] . '%')->get();
         return view('frontEnd.product')->with('products', $data);
-    
     }
 }

@@ -72,7 +72,7 @@ class SitesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -80,20 +80,17 @@ class SitesController extends Controller
             'image' => 'image'
         ]);
         $logo_name = $request['logo_name'];
-        if($request['image']!="")
-        {
+        if ($request['image'] != "") {
             $logo_image = $request['image']->store("images", "public");
+        } else {
+            $logo_image = $request['image'];
+        }
 
-        }
-        else{
-             $logo_image = $request['image'];
-        }
-       
 
         $site = Site::find($id);
         $site->update([
-            'logo_name'=>$logo_name,
-            'logo_image'=>$logo_image
+            'logo_name' => $logo_name,
+            'logo_image' => $logo_image
         ]);
 
         session()->flash('success', 'Info Change Successfully');

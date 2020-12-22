@@ -17,9 +17,9 @@ class favouritesController extends Controller
      */
     public function index()
     {
-       $favourites = Favourite::where('user_id',auth()->user()->id)->with(['product'])->get();
-      
-       return view('frontEnd.usersFavourit',['favourites' => $favourites]);
+        $favourites = Favourite::where('user_id', auth()->user()->id)->with(['product'])->get();
+
+        return view('frontEnd.usersFavourit', ['favourites' => $favourites]);
     }
 
     /**
@@ -38,8 +38,8 @@ class favouritesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id,Request $request)
-    {   
+    public function store($id, Request $request)
+    {
         $product = Product::find($id);
         // dd($product);
         $product->favourits()->create([
@@ -50,7 +50,6 @@ class favouritesController extends Controller
 
         //  return response()->json(['message' => "The product has been added"]);   
         return back();
-   
     }
 
     /**
@@ -61,7 +60,6 @@ class favouritesController extends Controller
      */
     public function show($id)
     {
-       
     }
 
     /**
@@ -96,8 +94,7 @@ class favouritesController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-     
-        $product->favourits()->where('product_id',$product->id)->delete();
+        $product->favourits()->where('product_id', $product->id)->delete();
         return back();
     }
 }

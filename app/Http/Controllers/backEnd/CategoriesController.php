@@ -96,15 +96,13 @@ class CategoriesController extends Controller
             'catogaryMetaKeyword' => 'required',
             'catogaryMetaDes' => 'required',
         ]);
+        
         $category = Category::find($id);
         $category->name = $request->get('catogaryName');
         $category->meta_keywords = $request->get('catogaryMetaKeyword');
         $category->meta_des = $request->get('catogaryMetaDes');
-
         $category->save();
-
         session()->flash('success', 'Category updated successfully');
-
         return redirect('/admin/category');
     }
 
@@ -118,9 +116,7 @@ class CategoriesController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-
         session()->flash('success', 'Category deleted successfully');
-
         return redirect('/admin/category');
     }
 }

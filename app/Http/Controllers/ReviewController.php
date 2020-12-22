@@ -38,22 +38,22 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
-    {   
-        // $product = Product::find($id);
-        $this->validate($request,[
+    public function store(Request $request, $id)
+    {
+
+        $this->validate($request, [
 
             'comment' => 'required',
             'rate' => 'required|min:1|max:5'
         ]);
-            // dd($request);
-            Review::create([
+
+        Review::create([
             'user_id' => auth()->user()->id,
-            'product_id'=> $id ,
+            'product_id' => $id,
             'comment' => $request->comment,
             'rate' => $request->rate,
         ]);
-                
+
         return back();
     }
 
@@ -76,7 +76,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-      return view('frontEnd.layouts.review-edit',['review' => $review]);
+        return view('frontEnd.layouts.review-edit', ['review' => $review]);
     }
 
     /**
@@ -88,31 +88,20 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        $this->validate($request,[
-            'comment'=> 'required',
+        $this->validate($request, [
+            'comment' => 'required',
             'rate' => 'required'
         ]);
-        // dd($review);
-         $review->update([
+
+        $review->update([
 
             'user_id' => auth()->user()->id,
-            'product_id'=> $review->product_id ,
-             'comment' => $request->comment,
-              'rate' => $request->rate  
-         ]) ;
-        //  $product = Product::find($review->product_id );
-        // dd($request);
-       
-        // $review->comment = $request->comment;
-        // $review->rate = $request->rate;
+            'product_id' => $review->product_id,
+            'comment' => $request->comment,
+            'rate' => $request->rate
+        ]);
 
-        // $review->save();
-       
-        //  return back();
-        // $reviews = Review::where('product_id',$product->id)->with('user')->get();
-        //  return view('frontEnd.productDetails',['reviews'=>$review]);
-        return redirect(route('product.details',$review->product_id ));
-
+        return redirect(route('product.details', $review->product_id));
     }
 
     /**
@@ -123,8 +112,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        // dd($review);
-        $this->authorize('delete',$review);
+
+        $this->authorize('delete', $review);
 
         $review->delete();
         return back();

@@ -183,7 +183,7 @@ class usersController extends Controller
      */
     public function destroy(User $user)
     {
-        //     ? dd("jjjo" ) :dd("notfound");
+       
         if($user->profile_photo_path!=""){
         if (file_exists(public_path() . "/storage" . '/' . $user->profile_photo_path)) {
 
