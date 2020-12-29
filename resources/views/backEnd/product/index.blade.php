@@ -29,7 +29,9 @@
                               <b>{{ $product->name }}</b>
 
                                     <span class="float-left  mr-5">
-                                        <img src="{{  $product->image }}" alt=""
+
+                                        <img src="{{ $product->image }}" alt=""
+
                                         width="50px" height="50px">
                                     </span>
                                 <span class="float-right">

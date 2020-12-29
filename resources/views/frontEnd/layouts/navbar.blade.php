@@ -96,7 +96,7 @@
                                                 <p>{{ Auth::user()->name }}</p>
                                             @else
                                                 <img class="rounded-circle float-md-right" width="50" height="50"
-                                                    src="{{  Auth::user()->profile_photo_path }}"
+                                                    src="{{ asset('storage/' . Auth::user()->profile_photo_path)}}"
                                                     alt="{{ Auth::user()->name }}" />
 
 

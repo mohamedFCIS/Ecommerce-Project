@@ -43,9 +43,13 @@
                        <b>description:</b>        {{ $product->description }}
                         </span>
                     </div>
-                    
+
                     <div class="form-groub">
-                        <img src="{{  $product->image }}" alt=""
+
+
+
+                        <img src="{{ $product->image }}" alt=""
+
                         width="100%" >
                     </div>
                 </div>

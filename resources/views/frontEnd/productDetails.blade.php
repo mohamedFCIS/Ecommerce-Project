@@ -11,18 +11,7 @@
 @endsection
 
 @section('content')
-    {{-- "id" => 12
-    "name" => "Elenor Mohr"
-    "price" => 412122710
-    "details" => "Repudiandae error molestiae distinctio illo laborum nostrum temporibus."
-    "description" => "Et animi corrupti dolore perspiciatis et qui quibusdam. Sed omnis illo veritatis eum officiis modi."
-    "image" => "https://via.placeholder.com/640x480.png/0033ff?text=consequatur"
-    "meta_keywords" => "sunt"
-    "meta_des" => "Ab iste."
-    "cat_id" => 1
-    "created_at" => "2020-12-17 17:40:08"
-    "updated_at" => "2020-12-17 17:40:08"
-    "deleted_at" => null --}}
+
     <div class="colorlib-product">
         <div class="container">
             <div class="row row-pb-lg product-detail-wrap">
@@ -89,11 +78,20 @@
                                 </button>
                             </span>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i
-                                            class="icon-shopping-cart"></i> Add to Cart</a></p>
-                            </div>
+                        <div class=>
+{{--                            <div class="col-sm-12 text-center">--}}
+{{--                                <p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i--}}
+{{--                                            class="icon-shopping-cart"></i> Add to Cart</a></p>--}}
+{{--                            </div>--}}
+                            <form action="{{ route('cart')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+
+                                <input type="submit"  class="btn btn-danger mt-3" value="Add to Cart">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -173,7 +171,7 @@
                                                         <div class="desc bg-gray-200 m-3 p-3 rounded-md">
                                                             <h4>
                                                                 <span class="text-left">{{ $review->user['name'] }}</span>
-                                                                
+
                                                                 <span
                                                                     class="text-right">{{ $review->created_at->diffForHumans() }}</span>
                                                             </h4>
@@ -237,9 +235,9 @@
                                                 <div class="rating-wrap">
                                                     <h3 class="head">Give a Review</h3>
                                                     <div class="wrap">
-                                                    
+
                                                       <p class="star">
-                                                           
+
                                                         <span>
                                                             <i class="icon-star-full"></i>
                                                             <i class="icon-star-full"></i>
@@ -250,8 +248,8 @@
                                                         </span>
                                                         <span>{{$rate['5']}} Reviews</span>
                                                     </p>
-                                                    
-                                                      
+
+
                                                         <p class="star">
                                                             <span>
                                                                 <i class="icon-star-full"></i>

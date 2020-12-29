@@ -106,9 +106,8 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                 <li class="{{is_active('contact')}}">
                     <a href="/admin/contact"> <i class="menu-icon fa fa-envelope"></i>messages</a>
                 </li>
-                 <li class="{{is_active('system')}}">
-                    <a href="/admin/sites"> <i class="menu-icon fa fa-fix"></i>system</a>
-
+                 <li class="{{is_active('sites')}}">
+                    <a href="/admin/sites"> <i class="menu-icon fa fa-cogs"></i>system</a>
                 </li>
 
             </ul>
@@ -138,27 +137,23 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
 
                 </div>
             </div>
+
             <div class="col-sm-5">
+
                 <div class="user-area dropdown float-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                         <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" />
+
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/' . Auth::user()->profile_photo_path)}}" alt="{{ Auth::user()->name }}" />
+
+
+
+
                     </a>
 
-                    <div class="user-menu dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 0px, 0px);">
-                        <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
-
-                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-
-                        <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
-                    </div>
-                </div>
-
-                <div class="language-select dropdown" id="language-select">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="language" aria-haspopup="true" aria-expanded="true">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </a>
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
@@ -174,48 +169,10 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
                         </form>
 
                     </div>
-                </div>
-
-            </div>
-            <div class="col-sm-5">
-
-                <div class="user-area dropdown float-right">
-
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        {{-- <img class="h-10 w-50 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="" /> --}}
-
-                    {{-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle float-md-right" width="50" height="50"  src="{{ asset('storage/'. Auth::user()->profile_photo_path )}}" alt="{{ Auth::user()->name }}" /> --}}
-
-                        {{-- <div class="jumbotron m-0 p-3 text-success " > {{ Auth::user()->name }}</div> --}}
-
-
-                    </a>
-
-
 
                 </div>
 
-                {{-- <div class="language-select dropdown" id="language-select">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="language">
-                        <div class="dropdown-item">
-                            <span class="flag-icon flag-icon-fr"></span>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-es"></i>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-it"></i>
-                        </div>
-                    </div>
-                </div> --}}
+
 
             </div>
         </div>
@@ -261,30 +218,7 @@ return null !== request()->segment(2) && request()->segment(2) == $routeName ? '
 <script src="/backEnd/assets/js/main.js"></script>
 
 
-{{--<script src="/backEnd/vendors/chart.js/dist/Chart.bundle.min.js"></script>--}}
-{{--<script src="/backEnd/assets/js/dashboard.js"></script>--}}
-{{--<script src="/backEnd/assets/js/widgets.js"></script>--}}
-{{--<script src="/backEnd/vendors/jqvmap/dist/jquery.vmap.min.js"></script>--}}
-{{--<script src="/backEnd/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>--}}
-{{--<script src="/backEnd/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>--}}
-{{--<script>--}}
-{{--    (function($) {--}}
-{{--        "use strict";--}}
 
-{{--        jQuery('#vmap').vectorMap({--}}
-{{--            map: 'world_en',--}}
-{{--            backgroundColor: null,--}}
-{{--            color: '#ffffff',--}}
-{{--            hoverOpacity: 0.7,--}}
-{{--            selectedColor: '#1de9b6',--}}
-{{--            enableZoom: true,--}}
-{{--            showTooltip: true,--}}
-{{--            values: sample_data,--}}
-{{--            scaleColors: ['#1de9b6', '#03a9f5'],--}}
-{{--            normalizeFunction: 'polynomial'--}}
-{{--        });--}}
-{{--    })(jQuery);--}}
-{{--</script>--}}
 
 </body>
 
